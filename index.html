@@ -3,8 +3,317 @@
 <head>
     <meta charset="UTF-8">
     <title>Yavalath</title>
+    <link rel="stylesheet" href="css/yavalath.css">
 </head>
 <body>
-
+<div id="board-container">
+    <div id="board-bg">
+        <div class="hexagon-row offset-4">
+            <div class="hexagon-bg"></div>
+            <div class="hexagon-bg"></div>
+            <div class="hexagon-bg"></div>
+            <div class="hexagon-bg"></div>
+            <div class="hexagon-bg"></div>
+        </div>
+        <div class="hexagon-row offset-3">
+            <div class="hexagon-bg"></div>
+            <div class="hexagon-bg"></div>
+            <div class="hexagon-bg"></div>
+            <div class="hexagon-bg"></div>
+            <div class="hexagon-bg"></div>
+            <div class="hexagon-bg"></div>
+        </div>
+        <div class="hexagon-row offset-2">
+            <div class="hexagon-bg"></div>
+            <div class="hexagon-bg"></div>
+            <div class="hexagon-bg"></div>
+            <div class="hexagon-bg"></div>
+            <div class="hexagon-bg"></div>
+            <div class="hexagon-bg"></div>
+            <div class="hexagon-bg"></div>
+        </div>
+        <div class="hexagon-row offset-1">
+            <div class="hexagon-bg"></div>
+            <div class="hexagon-bg"></div>
+            <div class="hexagon-bg"></div>
+            <div class="hexagon-bg"></div>
+            <div class="hexagon-bg"></div>
+            <div class="hexagon-bg"></div>
+            <div class="hexagon-bg"></div>
+            <div class="hexagon-bg"></div>
+        </div>
+        <div class="hexagon-row">
+            <div class="hexagon-bg"></div>
+            <div class="hexagon-bg"></div>
+            <div class="hexagon-bg"></div>
+            <div class="hexagon-bg"></div>
+            <div class="hexagon-bg"></div>
+            <div class="hexagon-bg"></div>
+            <div class="hexagon-bg"></div>
+            <div class="hexagon-bg"></div>
+            <div class="hexagon-bg"></div>
+        </div>
+        <div class="hexagon-row offset-1">
+            <div class="hexagon-bg"></div>
+            <div class="hexagon-bg"></div>
+            <div class="hexagon-bg"></div>
+            <div class="hexagon-bg"></div>
+            <div class="hexagon-bg"></div>
+            <div class="hexagon-bg"></div>
+            <div class="hexagon-bg"></div>
+            <div class="hexagon-bg"></div>
+        </div>
+        <div class="hexagon-row offset-2">
+            <div class="hexagon-bg"></div>
+            <div class="hexagon-bg"></div>
+            <div class="hexagon-bg"></div>
+            <div class="hexagon-bg"></div>
+            <div class="hexagon-bg"></div>
+            <div class="hexagon-bg"></div>
+            <div class="hexagon-bg"></div>
+        </div>
+        <div class="hexagon-row offset-3">
+            <div class="hexagon-bg"></div>
+            <div class="hexagon-bg"></div>
+            <div class="hexagon-bg"></div>
+            <div class="hexagon-bg"></div>
+            <div class="hexagon-bg"></div>
+            <div class="hexagon-bg"></div>
+        </div>
+        <div class="hexagon-row offset-4">
+            <div class="hexagon-bg"></div>
+            <div class="hexagon-bg"></div>
+            <div class="hexagon-bg"></div>
+            <div class="hexagon-bg"></div>
+            <div class="hexagon-bg"></div>
+        </div>
+    </div>
+    <div id="board">
+        <div class="hexagon-row offset-5">
+            <div class="coord"></div>
+            <div class="coord">1</div>
+            <div class="coord">2</div>
+            <div class="coord">3</div>
+            <div class="coord">4</div>
+            <div class="coord">5</div>
+        </div>
+        <div class="hexagon-row offset-4">
+            <div class="coord">A</div>
+            <div id="h0" class="hexagon">
+                <div class="stone"><div class="num"></div><div class="moon"></div></div>
+            </div>
+            <div id="h1" class="hexagon">
+                <div class="stone"><div class="num"></div><div class="moon"></div></div>
+            </div>
+            <div id="h2" class="hexagon">
+                <div class="stone"><div class="num"></div><div class="moon"></div></div>
+            </div>
+            <div id="h3" class="hexagon">
+                <div class="stone"><div class="num"></div><div class="moon"></div></div>
+            </div>
+            <div id="h4" class="hexagon">
+                <div class="stone"><div class="num"></div><div class="moon"></div></div>
+            </div>
+            <div class="coord">6</div>
+        </div>
+        <div class="hexagon-row offset-3">
+            <div class="coord">B</div>
+            <div id="h9" class="hexagon">
+                <div class="stone"><div class="num"></div><div class="moon"></div></div>
+            </div>
+            <div id="h10" class="hexagon">
+                <div class="stone"><div class="num"></div><div class="moon"></div></div>
+            </div>
+            <div id="h11" class="hexagon">
+                <div class="stone"><div class="num"></div><div class="moon"></div></div>
+            </div>
+            <div id="h12" class="hexagon">
+                <div class="stone"><div class="num"></div><div class="moon"></div></div>
+            </div>
+            <div id="h13" class="hexagon">
+                <div class="stone"><div class="num"></div><div class="moon"></div></div>
+            </div>
+            <div id="h14" class="hexagon">
+                <div class="stone"><div class="num"></div><div class="moon"></div></div>
+            </div>
+            <div class="coord">7</div>
+        </div>
+        <div class="hexagon-row offset-2">
+            <div class="coord">C</div>
+            <div id="h18" class="hexagon">
+                <div class="stone"><div class="num"></div><div class="moon"></div></div>
+            </div>
+            <div id="h19" class="hexagon">
+                <div class="stone"><div class="num"></div><div class="moon"></div></div>
+            </div>
+            <div id="h20" class="hexagon">
+                <div class="stone"><div class="num"></div><div class="moon"></div></div>
+            </div>
+            <div id="h21" class="hexagon">
+                <div class="stone"><div class="num"></div><div class="moon"></div></div>
+            </div>
+            <div id="h22" class="hexagon">
+                <div class="stone"><div class="num"></div><div class="moon"></div></div>
+            </div>
+            <div id="h23" class="hexagon">
+                <div class="stone"><div class="num"></div><div class="moon"></div></div>
+            </div>
+            <div id="h24" class="hexagon">
+                <div class="stone"><div class="num"></div><div class="moon"></div></div>
+            </div>
+            <div class="coord">8</div>
+        </div>
+        <div class="hexagon-row offset-1">
+            <div class="coord">D</div>
+            <div id="h27" class="hexagon">
+                <div class="stone"><div class="num"></div><div class="moon"></div></div>
+            </div>
+            <div id="h28" class="hexagon">
+                <div class="stone"><div class="num"></div><div class="moon"></div></div>
+            </div>
+            <div id="h29" class="hexagon">
+                <div class="stone"><div class="num"></div><div class="moon"></div></div>
+            </div>
+            <div id="h30" class="hexagon">
+                <div class="stone"><div class="num"></div><div class="moon"></div></div>
+            </div>
+            <div id="h31" class="hexagon">
+                <div class="stone"><div class="num"></div><div class="moon"></div></div>
+            </div>
+            <div id="h32" class="hexagon">
+                <div class="stone"><div class="num"></div><div class="moon"></div></div>
+            </div>
+            <div id="h33" class="hexagon">
+                <div class="stone"><div class="num"></div><div class="moon"></div></div>
+            </div>
+            <div id="h34" class="hexagon">
+                <div class="stone"><div class="num"></div><div class="moon"></div></div>
+            </div>
+            <div class="coord">9</div>
+        </div>
+        <div class="hexagon-row">
+            <div class="coord">E</div>
+            <div id="h36" class="hexagon">
+                <div class="stone"><div class="num"></div><div class="moon"></div></div>
+            </div>
+            <div id="h37" class="hexagon">
+                <div class="stone"><div class="num"></div><div class="moon"></div></div>
+            </div>
+            <div id="h38" class="hexagon">
+                <div class="stone"><div class="num"></div><div class="moon"></div></div>
+            </div>
+            <div id="h39" class="hexagon">
+                <div class="stone"><div class="num"></div><div class="moon"></div></div>
+            </div>
+            <div id="h40" class="hexagon">
+                <div class="stone"><div class="num"></div><div class="moon"></div></div>
+            </div>
+            <div id="h41" class="hexagon">
+                <div class="stone"><div class="num"></div><div class="moon"></div></div>
+            </div>
+            <div id="h42" class="hexagon">
+                <div class="stone"><div class="num"></div><div class="moon"></div></div>
+            </div>
+            <div id="h43" class="hexagon">
+                <div class="stone"><div class="num"></div><div class="moon"></div></div>
+            </div>
+            <div id="h44" class="hexagon">
+                <div class="stone"><div class="num"></div><div class="moon"></div></div>
+            </div>
+        </div>
+        <div class="hexagon-row offset-1">
+            <div class="coord">F</div>
+            <div id="h46" class="hexagon">
+                <div class="stone"><div class="num"></div><div class="moon"></div></div>
+            </div>
+            <div id="h47" class="hexagon">
+                <div class="stone"><div class="num"></div><div class="moon"></div></div>
+            </div>
+            <div id="h48" class="hexagon">
+                <div class="stone"><div class="num"></div><div class="moon"></div></div>
+            </div>
+            <div id="h49" class="hexagon">
+                <div class="stone"><div class="num"></div><div class="moon"></div></div>
+            </div>
+            <div id="h50" class="hexagon">
+                <div class="stone"><div class="num"></div><div class="moon"></div></div>
+            </div>
+            <div id="h51" class="hexagon">
+                <div class="stone"><div class="num"></div><div class="moon"></div></div>
+            </div>
+            <div id="h52" class="hexagon">
+                <div class="stone"><div class="num"></div><div class="moon"></div></div>
+            </div>
+            <div id="h53" class="hexagon">
+                <div class="stone"><div class="num"></div><div class="moon"></div></div>
+            </div>
+        </div>
+        <div class="hexagon-row offset-2">
+            <div class="coord">G</div>
+            <div id="h56" class="hexagon">
+                <div class="stone"><div class="num"></div><div class="moon"></div></div>
+            </div>
+            <div id="h57" class="hexagon">
+                <div class="stone"><div class="num"></div><div class="moon"></div></div>
+            </div>
+            <div id="h58" class="hexagon">
+                <div class="stone"><div class="num"></div><div class="moon"></div></div>
+            </div>
+            <div id="h59" class="hexagon">
+                <div class="stone"><div class="num"></div><div class="moon"></div></div>
+            </div>
+            <div id="h60" class="hexagon">
+                <div class="stone"><div class="num"></div><div class="moon"></div></div>
+            </div>
+            <div id="h61" class="hexagon">
+                <div class="stone"><div class="num"></div><div class="moon"></div></div>
+            </div>
+            <div id="h62" class="hexagon">
+                <div class="stone"><div class="num"></div><div class="moon"></div></div>
+            </div>
+        </div>
+        <div class="hexagon-row offset-3">
+            <div class="coord">H</div>
+            <div id="h66" class="hexagon">
+                <div class="stone"><div class="num"></div><div class="moon"></div></div>
+            </div>
+            <div id="h67" class="hexagon">
+                <div class="stone"><div class="num"></div><div class="moon"></div></div>
+            </div>
+            <div id="h68" class="hexagon">
+                <div class="stone"><div class="num"></div><div class="moon"></div></div>
+            </div>
+            <div id="h69" class="hexagon">
+                <div class="stone"><div class="num"></div><div class="moon"></div></div>
+            </div>
+            <div id="h70" class="hexagon">
+                <div class="stone"><div class="num"></div><div class="moon"></div></div>
+            </div>
+            <div id="h71" class="hexagon">
+                <div class="stone"><div class="num"></div><div class="moon"></div></div>
+            </div>
+        </div>
+        <div class="hexagon-row offset-4">
+            <div class="coord">I</div>
+            <div id="h76" class="hexagon">
+                <div class="stone"><div class="num"></div><div class="moon"></div></div>
+            </div>
+            <div id="h77" class="hexagon">
+                <div class="stone"><div class="num"></div><div class="moon"></div></div>
+            </div>
+            <div id="h78" class="hexagon">
+                <div class="stone"><div class="num"></div><div class="moon"></div></div>
+            </div>
+            <div id="h79" class="hexagon">
+                <div class="stone"><div class="num"></div><div class="moon"></div></div>
+            </div>
+            <div id="h80" class="hexagon">
+                <div class="stone"><div class="num"></div><div class="moon"></div></div>
+            </div>
+        </div>
+        <div class="dot"></div>
+    </div>
+</div>
+<script src="js/jquery-1.12.0.min.js"></script>
 </body>
 </html>
