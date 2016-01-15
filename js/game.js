@@ -7,10 +7,6 @@ function Game() {
     this._lastIdx = -1;
 }
 
-Game.prototype.init = function () {
-    this._ui.init();
-};
-
 Game.prototype.restart = function () {
     this._board.reset();
     this._curSide = WHITE;
@@ -26,5 +22,5 @@ Game.prototype.onCellClick = function (idx) {
     this._board.makeMove(m);
     this._lastIdx = idx;
     this.changSide();
-    this._ui.update(this._board);
+    this._ui.update();
 };
