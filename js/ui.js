@@ -19,8 +19,10 @@ UI.prototype.update = function() {
         stone.removeClass("white black");
         if(g._board._stones[idx] === WHITE) {
             stone.addClass("white");
+            stone.fadeIn(200);
         } else if(g._board._stones[idx] === BLACK) {
             stone.addClass("black");
+            stone.fadeIn(200);
         }
         if(g._lastIdx === idx) {
             stone.prepend(dot);

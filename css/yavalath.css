@@ -177,7 +177,7 @@ body {
 
 .stone.white,
 .stone.black {
-    display: block;
+    /*display: block;*/
 }
 
 .stone.black {
