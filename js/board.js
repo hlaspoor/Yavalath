@@ -36,6 +36,10 @@ function Board() {
     ];
 }
 
+Board.prototype.getYpn = function () {
+    return "";
+};
+
 Board.prototype.reset = function () {
     for (var i = 0; i < 81; i++) {
         this._stones[i] = EMPTY;
