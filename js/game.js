@@ -18,16 +18,86 @@ Game.prototype.loadYpn = function (ypn) {
     var ypnStr = ypnArray[0];
     var side = ypnArray[1];
     this.restart();
-    if(side == "w") {
+    if (side == "w") {
         this._curSide = WHITE;
-    } else if(side == "b") {
+    } else if (side == "b") {
         this._curSide = BLACK;
     }
     ypnArray = ypnStr.split("/");
-    for(var i = 0; i < ypnArray.length; i++) {
-
+    for (var x = 0; x < 9; x++) {
+        var row = ypnArray[x];
+        var idx = x < 5 ? 0 : (x - 4);
+        for (var y = 0; y < row.length; y++) {
+            switch (row[y]) {
+                case "1":
+                case "2":
+                case "3":
+                case "4":
+                case "5":
+                case "6":
+                case "7":
+                case "8":
+                case "9":
+                    idx += parseInt(row[y]);
+                    break;
+                case "w":
+                    this._board._stones[XY2IDX(x, idx)] = WHITE;
+                    idx++;
+                    break;
+                case "b":
+                    this._board._stones[XY2IDX(x, idx)] = BLACK;
+                    idx++;
+                    break;
+            }
+        }
     }
     this._ui.update();
+};
+
+Game.prototype.getYpn = function () {
+    var ypn = "";
+    for (var x = 0; x < 9; x++) {
+        var count = 0;
+        for (var y = 0; y < 9; y++) {
+            var idx = XY2IDX(x, y) + (x < 5 ? 0 : (x - 4));
+            if (this._board._mask[idx] === 3) {
+                if (this._board._stones[idx] === EMPTY) {
+                    count++;
+                    if(y === 8) {
+                        ypn += count.toString();
+                    }
+                } else if (this._board._stones[idx] === WHITE) {
+                    if (count > 0) {
+                        ypn += count.toString();
+                    }
+                    count = 0;
+                    ypn += "w";
+                } else if (this._board._stones[idx] === BLACK) {
+                    if (count > 0) {
+                        ypn += count.toString();
+                    }
+                    count = 0;
+                    ypn += "b";
+                }
+            } else {
+                if (count > 0) {
+                    ypn += count.toString();
+                }
+                break;
+            }
+        }
+        if (x < 8) {
+            ypn += "/";
+        } else {
+            ypn += " ";
+        }
+    }
+    if (this._curSide == WHITE) {
+        ypn += "w";
+    } else if (this._curSide == BLACK) {
+        ypn += "b";
+    }
+    return ypn;
 };
 
 Game.prototype.changSide = function () {
@@ -39,97 +109,6 @@ Game.prototype.onCellClick = function (idx) {
     this._board.makeMove(m);
     this._lastIdx = idx;
     this.changSide();
+    console.log(this.getYpn());
     this._ui.update();
 };
-
-
-//function parseYpn(ypn) {
-//    resetBoard();
-//
-//    var row = 0;
-//    var column = 0;
-//    var index = 0;
-//    var stone;
-//
-//    while (row <= 9 && index < ypn.length) {
-//        switch (ypn[index]) {
-//            case "w":
-//                stone = SIDE.WHITE;
-//                if (row == 9) {
-//                    brd_curSide = stone;
-//                } else {
-//                    brd_stones[HEX_TO_121[row * 9 + column]] = stone;
-//                    column++;
-//                }
-//                break;
-//            case "b":
-//                stone = SIDE.BLACK;
-//                if (row == 9) {
-//                    brd_curSide = stone;
-//                } else {
-//                    brd_stones[HEX_TO_121[row * 9 + column]] = stone;
-//                    column++;
-//                }
-//                break;
-//            case "1":
-//            case "2":
-//            case "3":
-//            case "4":
-//            case "5":
-//            case "6":
-//            case "7":
-//            case "8":
-//            case "9":
-//                column += parseInt(ypn[index]);
-//                break;
-//            case "/":
-//            case " ":
-//                row++;
-//                if (row < 5) {
-//                    column = 0;
-//                } else {
-//                    column = row - 4;
-//                }
-//                break;
-//            default:
-//                console.log("Load ypn error at index " + index);
-//                return;
-//        }
-//        index++;
-//    }
-//
-//    brd_positionKey = CreatePositionKey();
-//}
-//
-//function boardToYpn() {
-//    var ypn = "";
-//    var index;
-//    var emptyCount;
-//    var stone;
-//    for (var i = 0; i < 9; i++) {
-//        emptyCount = 0;
-//        for (var j = 0; j < 9; j++) {
-//            index = HEX_TO_121[i * 9 + j];
-//            if (HEXES[index] == POS.INBOARD) {
-//                stone = brd_stones[index];
-//                if (stone == SIDE.NONE) {
-//                    emptyCount++;
-//                } else {
-//                    if (emptyCount > 0) {
-//                        ypn += emptyCount.toString();
-//                    }
-//                    ypn += (stone == SIDE.WHITE ? "w" : "b");
-//                    emptyCount = 0;
-//                }
-//            }
-//        }
-//        if (emptyCount > 0) {
-//            ypn += emptyCount.toString();
-//        }
-//        if (i < 8) {
-//            ypn += "/";
-//        }
-//    }
-//    ypn += " " + (brd_curSide == SIDE.WHITE ? "w" : "b");
-//    return ypn;
-//}
