@@ -191,7 +191,7 @@ body {
     width: 100%;
     line-height: 32px;
     font-size: 20px;
-    font-family: "Georgia";
+    font-family: "Georgia", serif;
     display: block;
 }
 
