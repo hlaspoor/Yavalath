@@ -21,6 +21,8 @@ var DIR = {
     RIGHT_UP: -9
 };
 
+var FADE_SPEED = 240;
+
 function XY2IDX(x, y) {
     return x * 9 + y;
 }
