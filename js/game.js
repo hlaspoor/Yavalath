@@ -11,9 +11,10 @@ Game.prototype.restart = function () {
     this._board.reset();
     this._curSide = WHITE;
     this._lastIdx = -1;
+    this._ui.update();
 };
 
-Game.prototype.loadYpn = function (ypn) {
+Game.prototype.loadFen = function (ypn) {
     var ypnArray = ypn.split(" ");
     var ypnStr = ypnArray[0];
     var side = ypnArray[1];
@@ -54,7 +55,7 @@ Game.prototype.loadYpn = function (ypn) {
     this._ui.update();
 };
 
-Game.prototype.getYpn = function () {
+Game.prototype.getFen = function () {
     var ypn = "";
     for (var x = 0; x < 9; x++) {
         var count = 0;
@@ -104,11 +105,18 @@ Game.prototype.changSide = function () {
     this._curSide ^= 3;
 };
 
+Game.prototype.swap = function () {
+    // change color
+    this.changSide();
+};
+
 Game.prototype.onCellClick = function (idx) {
+    if(this._board._stones[idx] !== EMPTY) {
+        return;
+    }
     var m = MOVE(this._curSide, idx);
     this._board.makeMove(m);
     this._lastIdx = idx;
     this.changSide();
-    console.log(this.getYpn());
     this._ui.update();
 };

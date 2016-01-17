@@ -45,3 +45,7 @@ Board.prototype.reset = function () {
 Board.prototype.makeMove = function (m) {
     this._stones[MOVEIDX(m)] = MOVESTONE(m);
 };
+
+Board.prototype.unmakeMove = function (m) {
+    this._stones[MOVEIDX(m)] = EMPTY;
+};
