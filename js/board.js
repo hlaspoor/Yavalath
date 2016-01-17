@@ -37,15 +37,15 @@ function Board() {
 }
 
 Board.prototype.reset = function () {
-    for (var i = 0; i < 81; i++) {
-        this._stones[i] = EMPTY;
+    for (var idx = 0; idx < HEX_NUM; idx++) {
+        this._stones[idx] = STONE.EMPTY;
     }
 };
 
 Board.prototype.makeMove = function (m) {
-    this._stones[MOVEIDX(m)] = MOVESTONE(m);
+    this._stones[MOVE_IDX(m)] = MOVE_STONE(m);
 };
 
-Board.prototype.unmakeMove = function (m) {
-    this._stones[MOVEIDX(m)] = EMPTY;
-};
+//Board.prototype.unmakeMove = function (m) {
+//    this._stones[MOVE_IDX(m)] = STONE.EMPTY;
+//};
