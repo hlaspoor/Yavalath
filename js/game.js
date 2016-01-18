@@ -42,11 +42,11 @@ Game.prototype.loadFen = function (ypn) {
                     idx += parseInt(row[y]);
                     break;
                 case "w":
-                    this._board._stones[XY2IDX(x, idx)] = STONE.WHITE;
+                    this._board._stones[XY_TO_IDX(x, idx)] = STONE.WHITE;
                     idx++;
                     break;
                 case "b":
-                    this._board._stones[XY2IDX(x, idx)] = STONE.BLACK;
+                    this._board._stones[XY_TO_IDX(x, idx)] = STONE.BLACK;
                     idx++;
                     break;
             }
@@ -60,7 +60,7 @@ Game.prototype.getFen = function () {
     for (var x = 0; x < HEX_NUM_HALF; x++) {
         var count = 0;
         for (var y = 0; y < HEX_NUM_HALF; y++) {
-            var idx = XY2IDX(x, y) + (x < 5 ? 0 : (x - 4));
+            var idx = XY_TO_IDX(x, y) + (x < 5 ? 0 : (x - 4));
             if (this._board._mask[idx] === 3) {
                 if (this._board._stones[idx] === STONE.EMPTY) {
                     count++;
@@ -113,21 +113,21 @@ Game.prototype.checkDir = function (idx, dir) {
     var wCount = 0;
     var bCount = 0;
     var side;
-    var i;
-    i = idx - dir;
+    var curIdx;
+    curIdx = idx - dir;
     side = -1;
-    while (i >= 0 && this._board._edge[i] === 0) {
-        if (this._board._stones[i] !== STONE.EMPTY) {
+    while (curIdx >= 0 && this._board._edge[curIdx] === 0) {
+        if (this._board._stones[curIdx] !== STONE.EMPTY) {
             if (side === -1) {
-                if (this._board._stones[i] === STONE.WHITE) {
+                if (this._board._stones[curIdx] === STONE.WHITE) {
                     side = STONE.WHITE;
                     wCount++;
                 } else {
                     side = STONE.BLACK;
                     bCount++;
                 }
-            } else if (side === this._board._stones[i]) {
-                if (this._board._stones[i] === STONE.WHITE) {
+            } else if (side === this._board._stones[curIdx]) {
+                if (this._board._stones[curIdx] === STONE.WHITE) {
                     wCount++;
                 } else {
                     bCount++;
@@ -138,22 +138,22 @@ Game.prototype.checkDir = function (idx, dir) {
         } else {
             break;
         }
-        i -= dir;
+        curIdx -= dir;
     }
-    i = idx + dir;
+    curIdx = idx + dir;
     side = -1;
-    while (i < HEX_NUM && this._board._edge[i] === 0) {
-        if (this._board._stones[i] !== STONE.EMPTY) {
+    while (curIdx < HEX_NUM && this._board._edge[curIdx] === 0) {
+        if (this._board._stones[curIdx] !== STONE.EMPTY) {
             if (side === -1) {
-                if (this._board._stones[i] === STONE.WHITE) {
+                if (this._board._stones[curIdx] === STONE.WHITE) {
                     side = STONE.WHITE;
                     wCount++;
                 } else {
                     side = STONE.BLACK;
                     bCount++;
                 }
-            } else if (side === this._board._stones[i]) {
-                if (this._board._stones[i] === STONE.WHITE) {
+            } else if (side === this._board._stones[curIdx]) {
+                if (this._board._stones[curIdx] === STONE.WHITE) {
                     wCount++;
                 } else {
                     bCount++;
@@ -164,7 +164,7 @@ Game.prototype.checkDir = function (idx, dir) {
         } else {
             break;
         }
-        i += dir;
+        curIdx += dir;
     }
     if (wCount >= 3) {
         return STONE.WHITE;
