@@ -64,7 +64,7 @@ Game.prototype.getFen = function () {
             if (this._board._mask[idx] === 3) {
                 if (this._board._stones[idx] === STONE.EMPTY) {
                     count++;
-                    if(y === 8) {
+                    if (y === 8) {
                         ypn += count.toString();
                     }
                 } else if (this._board._stones[idx] === STONE.WHITE) {
@@ -235,7 +235,7 @@ Game.prototype.generateMoves = function () {
 //};
 
 Game.prototype.onCellClick = function (idx) {
-    if(this._board._stones[idx] !== STONE.EMPTY) {
+    if (this._board._stones[idx] !== STONE.EMPTY) {
         return;
     }
     var m = MOVE(this._curSide, idx);
