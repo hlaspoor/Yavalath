@@ -4,7 +4,7 @@ function UI(g) {
     this._game = g;
     $(".hex[id^='h']").mousedown(function () {
         var idx = parseInt(this.id.slice(1));
-        g.onCellClick(idx);
+        g.on_cell_click(idx);
     });
 }
 
@@ -26,9 +26,9 @@ UI.prototype.update = function () {
             stone.prepend(dot);
         }
     });
-    this.showYpn();
+    this.show_ypn();
 };
 
-UI.prototype.showYpn = function () {
-    $("#ypn").html(this._game.getFen());
+UI.prototype.show_ypn = function () {
+    $("#ypn").html(this._game.get_fen());
 };

@@ -13,13 +13,13 @@ body {
     box-sizing: border-box;
 }
 
-#board-container {
+#board_container {
     width: 550px;
     height: 480px;
     position: relative;
 }
 
-#board-bg {
+#board_bg {
     z-index: 2;
     position: absolute;
     top: 38.25px;
@@ -33,7 +33,7 @@ body {
     left: 0;
 }
 
-.hex-bg {
+.hex_bg {
     position: relative;
     width: 56px;
     height: 32.33px;
@@ -43,8 +43,8 @@ body {
     border-right: solid 4px #26272a;
 }
 
-.hex-bg:before,
-.hex-bg:after {
+.hex_bg:before,
+.hex_bg:after {
     content: "";
     position: absolute;
     z-index: 1;
@@ -57,13 +57,13 @@ body {
     left: 4.2010px;
 }
 
-.hex-bg:before {
+.hex_bg:before {
     top: -19.7990px;
     border-top: solid 5.6569px #26272a;
     border-right: solid 5.6569px #26272a;
 }
 
-.hex-bg:after {
+.hex_bg:after {
     bottom: -19.0919px;
     border-bottom: solid 5.6569px #26272a;
     border-left: solid 5.6569px #26272a;
@@ -113,38 +113,38 @@ body {
     /*background-color: #fded50;*/
 }
 
-.hex-row,
+.hex_row,
 .hex-bg-row {
     clear: left;
 }
 
-.hex-row.oft-1 {
+.hex_row.oft_1 {
     margin-left: 25px;
 }
 
-.hex-row.oft-2 {
+.hex_row.oft_2 {
     margin-left: 50px;
 }
 
-.hex-row.oft-3 {
+.hex_row.oft_3 {
     margin-left: 75px;
 }
 
-.hex-row.oft-4 {
+.hex_row.oft_4 {
     margin-left: 100px;
 }
 
-.hex-row.oft-5 {
+.hex_row.oft_5 {
     margin-left: 125px;
 }
 
-.hex-row .hex {
+.hex_row .hex {
     float: left;
     margin-right: -1px;
     margin-bottom: -1px;
 }
 
-.hex-row .hex-bg {
+.hex_row .hex_bg {
     float: left;
     margin-right: -6.91px;
     margin-bottom: -6.01px;

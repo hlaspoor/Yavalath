@@ -42,7 +42,7 @@ Board.prototype.reset = function () {
     }
 };
 
-Board.prototype.makeMove = function (m) {
+Board.prototype.make_move = function (m) {
     this._stones[MOVE_IDX(m)] = MOVE_STONE(m);
 };
 

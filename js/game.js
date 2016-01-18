@@ -14,7 +14,7 @@ Game.prototype.restart = function () {
     this._ui.update();
 };
 
-Game.prototype.loadFen = function (ypn) {
+Game.prototype.load_fen = function (ypn) {
     var ypnArray = ypn.split(" ");
     var ypnStr = ypnArray[0];
     var side = ypnArray[1];
@@ -55,7 +55,7 @@ Game.prototype.loadFen = function (ypn) {
     this._ui.update();
 };
 
-Game.prototype.getFen = function () {
+Game.prototype.get_fen = function () {
     var ypn = "";
     for (var x = 0; x < HEX_NUM_HALF; x++) {
         var count = 0;
@@ -101,7 +101,7 @@ Game.prototype.getFen = function () {
     return ypn;
 };
 
-Game.prototype.changSide = function () {
+Game.prototype.chang_side = function () {
     this._curSide ^= 3;
 };
 
@@ -109,7 +109,7 @@ Game.prototype.changSide = function () {
 // 如果相邻的白棋总数量大于3, 返回STONE.WHITE
 // 如果相邻的黑棋总数量大于3, 返回STONE.BLACK
 // 如果相邻的白棋或黑棋的总数量均没有大于3, 返回STONE.EMPTY
-Game.prototype.checkDir = function (idx, dir) {
+Game.prototype.check_dir = function (idx, dir) {
     var wCount = 0;
     var bCount = 0;
     var side;
@@ -178,7 +178,7 @@ Game.prototype.checkDir = function (idx, dir) {
 // 生成当前方的所有走法
 // 如果当前方有连4走法, 只生成连4走法
 // 如果对方有冲三的棋型, 只生成阻止对方连4的走法
-Game.prototype.generateMoves = function () {
+Game.prototype.generate_moves = function () {
     var mvs = [];       // 可以下子的所有走法
     var attMvs = [];    // 当前行棋方连4的走法
     var defMvs = [];    // 阻止对方连4的走法
@@ -187,7 +187,7 @@ Game.prototype.generateMoves = function () {
         if (this._board._mask[idx] === 3 && this._board._stones[idx] === STONE.EMPTY) {
             mvs.push(MOVE(this._curSide, idx));
             // 检测从左到右
-            s = this.checkDir(idx, DIR.RIGHT);
+            s = this.check_dir(idx, DIR.RIGHT);
             if (s !== STONE.EMPTY) {
                 if (s === this._curSide) {
                     attMvs.push(MOVE(s, idx));
@@ -196,7 +196,7 @@ Game.prototype.generateMoves = function () {
                 }
             }
             // 检测从右上到左下
-            s = this.checkDir(idx, DIR.LEFT_DOWN);
+            s = this.check_dir(idx, DIR.LEFT_DOWN);
             if (s !== STONE.EMPTY) {
                 if (s === this._curSide) {
                     attMvs.push(MOVE(s, idx));
@@ -205,7 +205,7 @@ Game.prototype.generateMoves = function () {
                 }
             }
             // 检测从左上到右下
-            s = this.checkDir(idx, DIR.RIGHT_DOWN);
+            s = this.check_dir(idx, DIR.RIGHT_DOWN);
             if (s !== STONE.EMPTY) {
                 if (s === this._curSide) {
                     attMvs.push(MOVE(s, idx));
@@ -231,16 +231,16 @@ Game.prototype.generateMoves = function () {
 
 //Game.prototype.swap = function () {
 //    // change color
-//    this.changSide();
+//    this.chang_side();
 //};
 
-Game.prototype.onCellClick = function (idx) {
+Game.prototype.on_cell_click = function (idx) {
     if (this._board._stones[idx] !== STONE.EMPTY) {
         return;
     }
     var m = MOVE(this._curSide, idx);
-    this._board.makeMove(m);
+    this._board.make_move(m);
     this._lastIdx = idx;
-    this.changSide();
+    this.chang_side();
     this._ui.update();
 };
