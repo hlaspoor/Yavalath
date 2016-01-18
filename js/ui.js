@@ -2,7 +2,7 @@
 
 function UI(g) {
     this._game = g;
-    $(".hexagon[id^='h']").mousedown(function () {
+    $(".hex[id^='h']").mousedown(function () {
         var idx = parseInt(this.id.slice(1));
         g.onCellClick(idx);
     });
@@ -11,7 +11,7 @@ function UI(g) {
 UI.prototype.update = function () {
     var g = this._game;
     var dot = $(".dot");
-    $(".hexagon[id^='h']").each(function () {
+    $(".hex[id^='h']").each(function () {
         var idx = parseInt(this.id.slice(1));
         var stone = $(this).find(".stone");
         stone.removeClass("white black");
