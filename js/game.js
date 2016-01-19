@@ -5,6 +5,7 @@ function Game() {
     this._board = new Board();
     this._curSide = STONE.EMPTY;
     this._lastIdx = -1;
+    this._iidx = 0;
 }
 
 Game.prototype.restart = function () {
@@ -229,10 +230,10 @@ Game.prototype.generate_moves = function () {
 //    return STONE.EMPTY;
 //};
 
-//Game.prototype.swap = function () {
-//    // change color
-//    this.chang_side();
-//};
+Game.prototype.swap = function () {
+    this._board.swap();
+    this.chang_side();
+};
 
 Game.prototype.on_cell_click = function (idx) {
     if (this._board._stones[idx] !== STONE.EMPTY) {

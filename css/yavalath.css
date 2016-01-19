@@ -5,7 +5,7 @@
 
 body {
     font-family: Tahoma, Segoe, "Segoe WP", "Lucida Grande", "Lucida Sans", Verdana, sans-serif;
-    font-size: 13px;
+    font-size: 14px;
 }
 
 *, *:before, *:after {
@@ -157,7 +157,7 @@ body {
     width: 50px;
     height: 42px;
     text-align: center;
-    font-size: 13px;
+    font-size: 14px;
     line-height: 58px;
 }
 
@@ -184,7 +184,7 @@ body {
     background-color: #000000;
 }
 
-.stone .num {
+.stone .stone_num {
     position: absolute;
     color: #000000;
     text-align: center;
@@ -192,10 +192,10 @@ body {
     line-height: 32px;
     font-size: 20px;
     font-family: "Georgia", serif;
-    display: block;
+    display: none;
 }
 
-.stone.black .num {
+.stone.black .stone_num {
     color: #ffffff;
 }
 
