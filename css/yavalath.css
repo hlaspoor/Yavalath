@@ -192,7 +192,7 @@ body {
     line-height: 32px;
     font-size: 20px;
     font-family: "Georgia", serif;
-    display: none;
+    display: block;
 }
 
 .stone.black .stone_num {
@@ -218,7 +218,7 @@ body {
     left: 12px;
     top: 12px;
     position: absolute;
-    background-color: #5fbcd3;
+    background-color: #FF0000;
     border-radius: 50%;
     border-width: 1px;
     width: 12px;

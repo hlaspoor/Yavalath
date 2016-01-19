@@ -46,6 +46,10 @@ Board.prototype.make_move = function (m) {
     this._stones[MOVE_IDX(m)] = MOVE_STONE(m);
 };
 
+Board.prototype.unmake_move = function (m) {
+    this._stones[MOVE_IDX(m)] = STONE.EMPTY;
+};
+
 Board.prototype.swap = function () {
     for (var idx = 0; idx < HEX_NUM; idx++) {
         if(this._stones[idx] !== STONE.EMPTY) {
@@ -53,7 +57,3 @@ Board.prototype.swap = function () {
         }
     }
 };
-
-//Board.prototype.unmakeMove = function (m) {
-//    this._stones[MOVE_IDX(m)] = STONE.EMPTY;
-//};

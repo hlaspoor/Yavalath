@@ -6,13 +6,18 @@ function Game() {
     this._curSide = STONE.EMPTY;
     this._lastIdx = -1;
     this._allowSwap = true;
-    this._iidx = 0;
+    this._moveHistory = [];
+    this._moveOrder = 0;
+    this._playOrder = 0;
 }
 
 Game.prototype.restart = function () {
     this._board.reset();
     this._curSide = STONE.WHITE;
     this._lastIdx = -1;
+    this._moveHistory = [];
+    this._moveOrder = 0;
+    this._playOrder = 0;
     this._ui.update();
 };
 
@@ -231,6 +236,65 @@ Game.prototype.generate_moves = function () {
 //    return STONE.EMPTY;
 //};
 
+Game.prototype.make_move = function (m) {
+    this._board.make_move(m);
+    this._moveHistory.push(m);
+    this._moveOrder++;
+    this._playOrder = this._moveOrder;
+    this._lastIdx = MOVE_IDX(m);
+    this.chang_side();
+};
+
+Game.prototype.unmake_move = function () {
+    var m = this._moveHistory.pop();
+    this._moveOrder--;
+    this._playOrder = this._moveOrder;
+    this._board.unmake_move(m);
+    this._lastIdx = MOVE_IDX();
+    this.chang_side();
+};
+
+Game.prototype.play_next_move = function () {
+    if (this._playOrder === this._moveOrder) {
+        return;
+    }
+    var m = this._moveHistory[this._playOrder++];
+    this._board.make_move(m);
+    this._lastIdx = MOVE_IDX(m);
+    this.chang_side();
+    this._ui.update();
+};
+
+Game.prototype.play_prev_move = function () {
+    if (this._playOrder < 1) {
+        return;
+    }
+    var m = this._moveHistory[--this._playOrder];
+    this._board.unmake_move(m);
+    this._lastIdx = MOVE_IDX(this._moveHistory[this._playOrder - 1]);
+    this._ui.update();
+};
+
+Game.prototype.play_first_move = function () {
+    while (this._playOrder > 0) {
+        var m = this._moveHistory[--this._playOrder];
+        this._board.unmake_move(m);
+        this._lastIdx = MOVE_IDX(this._moveHistory[this._playOrder - 1]);
+        this.chang_side();
+    }
+    this._ui.update();
+};
+
+Game.prototype.play_last_move = function () {
+    while (this._playOrder < this._moveOrder) {
+        var m = this._moveHistory[this._playOrder++];
+        this._board.make_move(m);
+        this._lastIdx = MOVE_IDX(m);
+        this.chang_side();
+    }
+    this._ui.update();
+};
+
 Game.prototype.swap = function () {
     this._board.swap();
     this.chang_side();
@@ -241,8 +305,6 @@ Game.prototype.on_cell_click = function (idx) {
         return;
     }
     var m = MOVE(this._curSide, idx);
-    this._board.make_move(m);
-    this._lastIdx = idx;
-    this.chang_side();
+    this.make_move(m);
     this._ui.update();
 };
