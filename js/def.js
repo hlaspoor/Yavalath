@@ -21,7 +21,7 @@ var DIR = {
     "RIGHT_UP": -9
 };
 
-var FADE_SPEED = 240;
+var FADE_SPEED = 200;
 
 function XY_TO_IDX(x, y) {
     return x * 9 + y;

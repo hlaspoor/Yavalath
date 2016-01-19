@@ -32,6 +32,9 @@ function UI(g) {
     $('#btn_last').click(function () {
         g.play_last_move();
     });
+    $('#btn_test').click(function () {
+        g.test();
+    });
 }
 
 // 更新棋盘
