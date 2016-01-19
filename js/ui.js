@@ -16,6 +16,9 @@ function UI(g) {
         var show = this.checked;
         $(".dot").css("display", (show ? "block" : "none"));
     });
+    $("#chk_allow_swap").change(function () {
+        g._allowSwap = this.checked;
+    });
 }
 
 UI.prototype.update = function () {

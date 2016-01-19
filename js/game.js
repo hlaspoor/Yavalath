@@ -5,6 +5,7 @@ function Game() {
     this._board = new Board();
     this._curSide = STONE.EMPTY;
     this._lastIdx = -1;
+    this._allowSwap = true;
     this._iidx = 0;
 }
 
