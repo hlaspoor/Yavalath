@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Yavalath</title>
+    <link rel="stylesheet" href="css/font-awesome.min.css">
     <link rel="stylesheet" href="css/yavalath.css">
 </head>
 <body>
@@ -501,10 +502,21 @@
     <div id="ypn"></div>
 </div>
 <div>
-    <button type="button" id="btn_first">First</button>
-    <button type="button" id="btn_prev">Previous</button>
-    <button type="button" id="btn_next">Next</button>
-    <button type="button" id="btn_last">Last</button>
+    <button type="button" class="btn" id="btn_first">
+        <i class='fa fa-fast-backward'></i>
+    </button>
+    <button type="button" class="btn" id="btn_prev">
+        <i class='fa fa-step-backward'></i>
+    </button>
+    <button type="button" class="btn" id="btn_next">
+        <i class='fa fa-step-forward'></i>
+    </button>
+    <button type="button" class="btn" id="btn_last">
+        <i class='fa fa-fast-forward'></i>
+    </button>
+    <button type="button" class="btn" id="btn_go">
+        <i class='fa fa-commenting'></i>
+    </button>
 </div>
 <div>
     <input type="checkbox" id="chk_show_last_move" name="chk_show_last_move" checked="checked">
