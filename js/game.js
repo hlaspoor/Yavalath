@@ -272,6 +272,7 @@ Game.prototype.play_prev_move = function () {
     var m = this._moveHistory[--this._playOrder];
     this._board.unmake_move(m);
     this._lastIdx = MOVE_IDX(this._moveHistory[this._playOrder - 1]);
+    this.chang_side();
     this._ui.update();
 };
 
@@ -303,6 +304,11 @@ Game.prototype.swap = function () {
 Game.prototype.on_cell_click = function (idx) {
     if (this._board._stones[idx] !== STONE.EMPTY) {
         return;
+    }
+    if(this._playOrder !== this._moveOrder) {
+        // 移除该播放节点以后的所有走法后再加入新的走法
+        this._moveHistory.splice(this._playOrder, this._moveOrder - this._playOrder);
+        this._moveOrder = this._playOrder;
     }
     var m = MOVE(this._curSide, idx);
     this.make_move(m);

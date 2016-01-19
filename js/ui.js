@@ -34,6 +34,7 @@ function UI(g) {
     });
 }
 
+// 更新棋盘
 UI.prototype.update = function () {
     var g = this._game;
     var dot = $(".dot");
@@ -69,6 +70,7 @@ UI.prototype.update = function () {
     this.update_playback();
 };
 
+// 更新回放按钮的状态
 UI.prototype.update_playback = function () {
     if (this._game._moveOrder === 0) {
         $("#btn_prev").prop('disabled', true);
