@@ -7,11 +7,8 @@ The goal of Yavalath is to place four stones in a row or to force an opponent to
 ## Play
 
 The game begins with an empty board.
-
 Each player has an allocated color: White or Black.
-
 Starting with White, players take turns placing a stone of their color in any empty cell on the board.
-
 Since the first player has a distinct advantage, the pie rule is generally used to the game fair.  This rule allows the second player to switch colors as his first move.
 
 ## End of Game
