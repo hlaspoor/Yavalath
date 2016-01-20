@@ -29,7 +29,7 @@ Game.prototype.new_game = function () {
 };
 
 Game.prototype.load_fen = function (fen) {
-    var fenArray = fen.split(" ");
+    var fenArray = fen.trim().split(" ");
     var fenStr = fenArray[0];
     var side = fenArray[1];
     this.reset();
@@ -66,6 +66,7 @@ Game.prototype.load_fen = function (fen) {
             }
         }
     }
+    this.check_game_over();
     this._ui.update();
 };
 
