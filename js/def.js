@@ -55,6 +55,10 @@ function MOVE_STONE(m) {
     return parseInt((m >> 7) & 0x3);
 }
 
+function MOVE_SWAP(m) {
+    return MOVE(MOVE_STONE(m) ^ 3, MOVE_IDX(m));
+}
+
 function MOVE_NAME(m) {
     var idx = MOVE_IDX(m);
     return COORD_X_CHAR[IDX_TO_X(idx)] + COORD_Y_CHAR[IDX_TO_Y(idx)];

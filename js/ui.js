@@ -1,6 +1,7 @@
 "use strict";
 
 function UI(g) {
+    var _inAnimation = false;
     var ui = this;
     this._game = g;
     $(".hex[id^='h']").mousedown(function () {
@@ -20,21 +21,44 @@ function UI(g) {
     });
     $("#chk_allow_swap").change(function () {
         g._allowSwap = this.checked;
+        ui.update_swap();
     });
 
     // 回放控制
     $("#btn_prev").click(function () {
+        if (ui._inAnimation) {
+            return;
+        }
         g.play_prev_move();
     });
     $("#btn_next").click(function () {
+        if (ui._inAnimation) {
+            return;
+        }
         g.play_next_move();
     });
     $("#btn_first").click(function () {
+        if (ui._inAnimation) {
+            return;
+        }
         g.play_first_move();
     });
     $("#btn_last").click(function () {
+        if (ui._inAnimation) {
+            return;
+        }
         g.play_last_move();
     });
+
+    $("#btn_swap").click(function () {
+        if (g._playOrder !== g._moveOrder) {
+            // 移除该播放节点以后的所有走法后再加入新的走法
+            g._moveHistory.splice(g._playOrder, g._moveOrder - g._playOrder);
+            g._moveOrder = g._playOrder;
+        }
+        g.swap();
+    });
+
     $("#btn_test").click(function () {
         g.test();
     });
@@ -46,6 +70,7 @@ function UI(g) {
 
 // 更新棋盘
 UI.prototype.update = function () {
+    var ui = this;
     var g = this._game;
     var dot = $(".dot");
     // 先把高亮走法的dot归为
@@ -54,21 +79,76 @@ UI.prototype.update = function () {
         var idx = parseInt(this.id.slice(1));
         var stone = $(this).find(".stone");
         var num = stone.find(".stone_num");
-        var tmp_num = 0;
+        var tmpNum = 0;
+        var tmpNumLast = 0;
         if (g._board._stones[idx] === STONE.WHITE) {
-            tmp_num = g._moveHistory.indexOf(MOVE(STONE.WHITE, idx)) + 1;
+            tmpNum = g._moveHistory.indexOf(MOVE(STONE.WHITE, idx)) + 1;
+            tmpNumLast = g._moveHistory.indexOf(MOVE(STONE.BLACK, idx)) + 1;
+            if (tmpNum > 0) {
+                if (tmpNumLast > 0) {
+                    if (tmpNum > tmpNumLast) {
+                        num.html("1|2");
+                    } else {
+                        ui._inAnimation = true;
+                        stone.fadeOut(FADE_SPEED, function () {
+                            num.html(tmpNum);
+                            stone.removeClass("white black");
+                            stone.addClass("white");
+                            $(this).css("cursor", "default");
+                            stone.fadeIn(FADE_SPEED, function () {
+                                ui._inAnimation = false;
+                            });
+                        });
+                        return;
+                    }
+                } else {
+                    num.html(tmpNum);
+                }
+            } else {
+                num.html("");
+            }
             stone.removeClass("white black");
             stone.addClass("white");
-            num.html(tmp_num > 0 ? tmp_num : "");
             $(this).css("cursor", "default");
-            stone.fadeIn(FADE_SPEED);
+            ui._inAnimation = true;
+            stone.fadeIn(FADE_SPEED, function () {
+                ui._inAnimation = false;
+            });
         } else if (g._board._stones[idx] === STONE.BLACK) {
-            tmp_num = g._moveHistory.indexOf(MOVE(STONE.BLACK, idx)) + 1;
+            tmpNum = g._moveHistory.indexOf(MOVE(STONE.BLACK, idx)) + 1;
+            tmpNumLast = g._moveHistory.indexOf(MOVE(STONE.WHITE, idx)) + 1;
+            if (tmpNum > 0) {
+                if (tmpNumLast > 0) {
+                    if (tmpNum > tmpNumLast) {
+                        if (g._playOrder === 2 && stone.hasClass("white")) {
+                            ui._inAnimation = true;
+                            stone.fadeOut(FADE_SPEED, function () {
+                                num.html("1|2");
+                                stone.removeClass("white black");
+                                stone.addClass("black");
+                                $(this).css("cursor", "default");
+                                stone.fadeIn(FADE_SPEED, function () {
+                                    ui._inAnimation = false;
+                                });
+                            });
+                            return;
+                        }
+                    } else {
+                        num.html(tmpNum);
+                    }
+                } else {
+                    num.html(tmpNum);
+                }
+            } else {
+                num.html("");
+            }
+            ui._inAnimation = true;
             stone.removeClass("white black");
             stone.addClass("black");
-            num.html(tmp_num > 0 ? tmp_num : "");
-            stone.fadeIn(FADE_SPEED);
             $(this).css("cursor", "default");
+            stone.fadeIn(FADE_SPEED, function () {
+                ui._inAnimation = false;
+            });
         } else {
             stone.fadeOut(FADE_SPEED, function () {
                 stone.removeClass("white black");
@@ -82,50 +162,67 @@ UI.prototype.update = function () {
 
     this.show_fen();
     this.update_playback();
+    this.update_swap();
     this.update_result();
 };
 
 // 更新回放按钮的状态
 UI.prototype.update_playback = function () {
+    var btnPrev = $("#btn_prev");
+    var btnNext = $("#btn_next");
+    var btnFirst = $("#btn_first");
+    var btnLast = $("#btn_last");
     if (this._game._moveOrder === 0) {
-        $("#btn_prev").prop('disabled', true);
-        $("#btn_first").prop('disabled', true);
-        $("#btn_next").prop('disabled', true);
-        $("#btn_last").prop('disabled', true);
+        btnPrev.prop('disabled', true);
+        btnFirst.prop('disabled', true);
+        btnNext.prop('disabled', true);
+        btnLast.prop('disabled', true);
     } else {
         if (this._game._playOrder === 0) {
-            $("#btn_prev").prop('disabled', true);
-            $("#btn_first").prop('disabled', true);
-            $("#btn_next").prop('disabled', false);
-            $("#btn_last").prop('disabled', false);
+            btnPrev.prop('disabled', true);
+            btnFirst.prop('disabled', true);
+            btnNext.prop('disabled', false);
+            btnLast.prop('disabled', false);
         } else if (this._game._playOrder === this._game._moveOrder) {
-            $("#btn_prev").prop('disabled', false);
-            $("#btn_first").prop('disabled', false);
-            $("#btn_next").prop('disabled', true);
-            $("#btn_last").prop('disabled', true);
+            btnPrev.prop('disabled', false);
+            btnFirst.prop('disabled', false);
+            btnNext.prop('disabled', true);
+            btnLast.prop('disabled', true);
         } else {
-            $("#btn_prev").prop('disabled', false);
-            $("#btn_first").prop('disabled', false);
-            $("#btn_next").prop('disabled', false);
-            $("#btn_last").prop('disabled', false);
+            btnPrev.prop('disabled', false);
+            btnFirst.prop('disabled', false);
+            btnNext.prop('disabled', false);
+            btnLast.prop('disabled', false);
         }
     }
 };
 
 UI.prototype.update_result = function () {
-    if(this._game._isGameOver !== RESULT.NONE) {
+    var divResult = $("#game_result");
+    if (this._game._isGameOver !== RESULT.NONE) {
         var result = "GAME OVER, ";
-        if(this._game._isGameOver === RESULT.WHITE) {
+        if (this._game._isGameOver === RESULT.WHITE) {
             result += "WHITE WINS!";
-        } else if(this._game._isGameOver === RESULT.BLACK) {
+        } else if (this._game._isGameOver === RESULT.BLACK) {
             result += "BLACK WINS!";
         } else {
             result += "DRAW!";
         }
-        $("#game_result").html(result);
-        $("#game_result").slideDown(FADE_SPEED);
+        divResult.html(result);
+        divResult.slideDown(FADE_SPEED);
     } else {
-        $("#game_result").slideUp(FADE_SPEED);
+        divResult.slideUp(FADE_SPEED);
+    }
+};
+
+UI.prototype.update_swap = function () {
+    var btnSwap = $("#btn_swap");
+    if (this._game._board.get_stones_count() === 1 &&
+        this._game._playOrder <= 1 &&
+        this._game._allowSwap) {
+        btnSwap.prop('disabled', false);
+    } else {
+        btnSwap.prop('disabled', true);
     }
 };
 
@@ -154,6 +251,5 @@ UI.prototype.on_cell_click = function (idx) {
         //setTimeout(function () {
         //    alert("GAME OVER");
         //}, FADE_DELAY);
-        return;
     }
 };

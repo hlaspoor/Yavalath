@@ -42,6 +42,16 @@ Board.prototype.reset = function () {
     }
 };
 
+Board.prototype.get_stones_count = function () {
+    var count = 0;
+    for (var idx = 0; idx < HEX_NUM; idx++) {
+        if(this._stones[idx] !== STONE.EMPTY){
+            count++;
+        }
+    }
+    return count;
+};
+
 Board.prototype.make_move = function (m) {
     this._stones[MOVE_IDX(m)] = MOVE_STONE(m);
 };
@@ -49,6 +59,10 @@ Board.prototype.make_move = function (m) {
 Board.prototype.unmake_move = function (m) {
     this._stones[MOVE_IDX(m)] = STONE.EMPTY;
 };
+
+Board.prototype.unmake_swap_move = function (m) {
+    this._stones[MOVE_IDX(m)] = MOVE_STONE(m) ^ 3;
+}
 
 Board.prototype.swap = function () {
     for (var idx = 0; idx < HEX_NUM; idx++) {

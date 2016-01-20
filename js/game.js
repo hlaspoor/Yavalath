@@ -197,22 +197,22 @@ Game.prototype.check_game_over = function () {
 };
 
 Game.prototype.make_move = function (m) {
-    this._board.make_move(m);
     this._moveHistory.push(m);
     this._moveOrder++;
+    this._board.make_move(m);
     this._playOrder = this._moveOrder;
     this._lastIdx = MOVE_IDX(m);
     this.chang_side();
 };
-
-Game.prototype.unmake_move = function () {
-    var m = this._moveHistory.pop();
-    this._moveOrder--;
-    this._playOrder = this._moveOrder;
-    this._board.unmake_move(m);
-    this._lastIdx = MOVE_IDX();
-    this.chang_side();
-};
+//
+//Game.prototype.unmake_move = function () {
+//    var m = this._moveHistory.pop();
+//    this._moveOrder--;
+//    this._playOrder = this._moveOrder;
+//    this._board.unmake_move(m);
+//    this._lastIdx = MOVE_IDX(m);
+//    this.chang_side();
+//};
 
 Game.prototype.play_next_move = function () {
     if (this._playOrder === this._moveOrder) {
@@ -231,7 +231,11 @@ Game.prototype.play_prev_move = function () {
         return;
     }
     var m = this._moveHistory[--this._playOrder];
-    this._board.unmake_move(m);
+    if(this._playOrder === 1 && MOVE_IDX(m) === MOVE_IDX(this._moveHistory[this._playOrder - 1])) {
+        this._board.unmake_swap_move(m);
+    }else {
+        this._board.unmake_move(m);
+    }
     this._lastIdx = this._playOrder === 0 ? -1 : MOVE_IDX(this._moveHistory[this._playOrder - 1]);
     this.chang_side();
     this.check_game_over();
@@ -261,8 +265,10 @@ Game.prototype.play_last_move = function () {
 };
 
 Game.prototype.swap = function () {
-    this._board.swap();
-    this.chang_side();
+    var m = this._moveHistory[0];
+    m = MOVE(this._curSide, MOVE_IDX(m));
+    this.make_move(m);
+    this._ui.update();
 };
 
 Game.prototype.test = function () {
