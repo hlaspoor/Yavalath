@@ -16,6 +16,7 @@ body {
 #board_container {
     width: 550px;
     height: 480px;
+    margin: 0 auto;
     position: relative;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
@@ -224,7 +225,7 @@ body {
     left: 12px;
     top: 12px;
     position: absolute;
-    background-color: #FF0000;
+    background-color: #ff0000;
     border-radius: 50%;
     border-width: 1px;
     width: 12px;
@@ -234,4 +235,21 @@ body {
 .btn {
     height: 28px;
     width: 44px;
+}
+
+#game_result_container {
+    height: 29px;
+    width: 100%;
+}
+
+#game_result {
+    background-color: #dc143c;
+    font-weight: bold;
+    color: #ffffff;
+    line-height: 29px;
+    height: 100%;
+    width: 260px;
+    margin: 0 auto;
+    text-align: center;
+    display: none;
 }

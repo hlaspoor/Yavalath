@@ -9,7 +9,7 @@ function Game() {
     this._moveHistory = [];
     this._moveOrder = 0;
     this._playOrder = 0;
-    this._isGameOver = false;
+    this._isGameOver = RESULT.NONE;
     this._ai = new Ai();
 }
 
@@ -20,7 +20,7 @@ Game.prototype.reset = function () {
     this._moveHistory = [];
     this._moveOrder = 0;
     this._playOrder = 0;
-    this._isGameOver = false;
+    this._isGameOver = RESULT.NONE;
 };
 
 Game.prototype.new_game = function () {
@@ -163,30 +163,35 @@ Game.prototype.check_dir = function (idx, dir) {
 };
 
 Game.prototype.check_game_over = function () {
-    var s = STONE.EMPTY;
+    var s = RESULT.NONE;
+    var count = 0;
     for(var idx = 0; idx < HEX_NUM; idx++) {
         if(this._board._stones[idx] !== STONE.EMPTY) {
             // 检测从左到右
             s = this.check_dir(idx, DIR.RIGHT);
             if (s !== STONE.EMPTY) {
-                this._isGameOver = true;
+                this._isGameOver = s;
                 return s;
             }
             // 检测从右上到左下
             s = this.check_dir(idx, DIR.LEFT_DOWN);
             if (s !== STONE.EMPTY) {
-                this._isGameOver = true;
+                this._isGameOver = s;
                 return s;
             }
             // 检测从左上到右下
             s = this.check_dir(idx, DIR.RIGHT_DOWN);
             if (s !== STONE.EMPTY) {
-                this._isGameOver = true;
+                this._isGameOver = s;
                 return s;
             }
+            count++;
         }
     }
-    this._isGameOver = false;
+    if(count === 61) {
+        this._isGameOver = RESULT.DRAW;
+        return RESULT.DRAW;
+    }
     return s;
 };
 

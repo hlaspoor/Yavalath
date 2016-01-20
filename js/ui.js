@@ -82,6 +82,7 @@ UI.prototype.update = function () {
 
     this.show_fen();
     this.update_playback();
+    this.update_result();
 };
 
 // 更新回放按钮的状态
@@ -111,16 +112,32 @@ UI.prototype.update_playback = function () {
     }
 };
 
+UI.prototype.update_result = function () {
+    if(this._game._isGameOver !== RESULT.NONE) {
+        var result = "GAME OVER, ";
+        if(this._game._isGameOver === RESULT.WHITE) {
+            result += "WHITE WINS!";
+        } else if(this._game._isGameOver === RESULT.BLACK) {
+            result += "BLACK WINS!";
+        } else {
+            result += "DRAW!";
+        }
+        $("#game_result").html(result);
+        $("#game_result").slideDown(FADE_SPEED);
+    } else {
+        $("#game_result").slideUp(FADE_SPEED);
+    }
+};
+
 UI.prototype.show_fen = function () {
     $("#fen").html(this._game.get_fen());
 };
-
 
 UI.prototype.on_cell_click = function (idx) {
     if (this._game._board._stones[idx] !== STONE.EMPTY) {
         return;
     }
-    if (this._game._isGameOver) {
+    if (this._game._isGameOver !== RESULT.NONE) {
         return;
     }
     if (this._game._playOrder !== this._game._moveOrder) {
@@ -134,9 +151,9 @@ UI.prototype.on_cell_click = function (idx) {
     // 检测是否有一方获胜
     if (this._game.check_game_over() !== STONE.EMPTY) {
         this.update();
-        setTimeout(function () {
-            alert("GAME OVER");
-        }, FADE_DELAY);
+        //setTimeout(function () {
+        //    alert("GAME OVER");
+        //}, FADE_DELAY);
         return;
     }
 };

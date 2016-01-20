@@ -9,6 +9,13 @@ var STONE = {
     "BLACK": 2
 };
 
+var RESULT = {
+    "NONE": 0,
+    "WHITE": 1,
+    "BLACK": 2,
+    "DRAW": 3
+};
+
 var COORD_X_CHAR = "ABCDEFGHI";
 var COORD_Y_CHAR = "123456789";
 
@@ -22,7 +29,7 @@ var DIR = {
 };
 
 var FADE_SPEED = 200;
-var FADE_DELAY = 220;
+//var FADE_DELAY = 220;
 
 function XY_TO_IDX(x, y) {
     return x * 9 + y;
