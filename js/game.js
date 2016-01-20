@@ -26,19 +26,19 @@ Game.prototype.new_game = function () {
     this._ui.update();
 };
 
-Game.prototype.load_fen = function (ypn) {
-    var ypnArray = ypn.split(" ");
-    var ypnStr = ypnArray[0];
-    var side = ypnArray[1];
+Game.prototype.load_fen = function (fen) {
+    var fenArray = fen.split(" ");
+    var fenStr = fenArray[0];
+    var side = fenArray[1];
     this.reset();
     if (side == "w") {
         this._curSide = STONE.WHITE;
     } else if (side == "b") {
         this._curSide = STONE.BLACK;
     }
-    ypnArray = ypnStr.split("/");
+    fenArray = fenStr.split("/");
     for (var x = 0; x < HEX_NUM_HALF; x++) {
-        var row = ypnArray[x];
+        var row = fenArray[x];
         var idx = x < 5 ? 0 : (x - 4);
         for (var y = 0; y < row.length; y++) {
             switch (row[y]) {
@@ -68,7 +68,7 @@ Game.prototype.load_fen = function (ypn) {
 };
 
 Game.prototype.get_fen = function () {
-    var ypn = "";
+    var fen = "";
     for (var x = 0; x < HEX_NUM_HALF; x++) {
         var count = 0;
         for (var y = 0; y < HEX_NUM_HALF; y++) {
@@ -77,40 +77,40 @@ Game.prototype.get_fen = function () {
                 if (this._board._stones[idx] === STONE.EMPTY) {
                     count++;
                     if (y === 8) {
-                        ypn += count.toString();
+                        fen += count.toString();
                     }
                 } else if (this._board._stones[idx] === STONE.WHITE) {
                     if (count > 0) {
-                        ypn += count.toString();
+                        fen += count.toString();
                     }
                     count = 0;
-                    ypn += "w";
+                    fen += "w";
                 } else if (this._board._stones[idx] === STONE.BLACK) {
                     if (count > 0) {
-                        ypn += count.toString();
+                        fen += count.toString();
                     }
                     count = 0;
-                    ypn += "b";
+                    fen += "b";
                 }
             } else {
                 if (count > 0) {
-                    ypn += count.toString();
+                    fen += count.toString();
                 }
                 break;
             }
         }
         if (x < 8) {
-            ypn += "/";
+            fen += "/";
         } else {
-            ypn += " ";
+            fen += " ";
         }
     }
     if (this._curSide == STONE.WHITE) {
-        ypn += "w";
+        fen += "w";
     } else if (this._curSide == STONE.BLACK) {
-        ypn += "b";
+        fen += "b";
     }
-    return ypn;
+    return fen;
 };
 
 Game.prototype.chang_side = function () {

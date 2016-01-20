@@ -6,6 +6,7 @@ function UI(g) {
         var idx = parseInt(this.id.slice(1));
         g.on_cell_click(idx);
     });
+    // 设置选项
     $("#chk_show_move_order").change(function () {
         var show = this.checked;
         $(".stone_num").each(function () {
@@ -20,20 +21,25 @@ function UI(g) {
         g._allowSwap = this.checked;
     });
 
-    $('#btn_prev').click(function () {
+    // 回放控制
+    $("#btn_prev").click(function () {
         g.play_prev_move();
     });
-    $('#btn_next').click(function () {
+    $("#btn_next").click(function () {
         g.play_next_move();
     });
-    $('#btn_first').click(function () {
+    $("#btn_first").click(function () {
         g.play_first_move();
     });
-    $('#btn_last').click(function () {
+    $("#btn_last").click(function () {
         g.play_last_move();
     });
-    $('#btn_test').click(function () {
+    $("#btn_test").click(function () {
         g.test();
+    });
+
+    $("#btn_load_fen").click(function () {
+        g.load_fen($('#txt_fen').val());
     });
 }
 
@@ -69,7 +75,7 @@ UI.prototype.update = function () {
         }
     });
 
-    this.show_ypn();
+    this.show_fen();
     this.update_playback();
 };
 
@@ -100,6 +106,6 @@ UI.prototype.update_playback = function () {
     }
 };
 
-UI.prototype.show_ypn = function () {
-    $("#ypn").html(this._game.get_fen());
+UI.prototype.show_fen = function () {
+    $("#fen").html(this._game.get_fen());
 };
