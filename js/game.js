@@ -192,6 +192,7 @@ Game.prototype.check_game_over = function () {
         this._isGameOver = RESULT.DRAW;
         return RESULT.DRAW;
     }
+    this._isGameOver = RESULT.NONE;
     return s;
 };
 
@@ -231,7 +232,7 @@ Game.prototype.play_prev_move = function () {
     }
     var m = this._moveHistory[--this._playOrder];
     this._board.unmake_move(m);
-    this._lastIdx = MOVE_IDX(this._moveHistory[this._playOrder - 1]);
+    this._lastIdx = this._playOrder === 0 ? -1 : MOVE_IDX(this._moveHistory[this._playOrder - 1]);
     this.chang_side();
     this.check_game_over();
     this._ui.update();
@@ -241,7 +242,7 @@ Game.prototype.play_first_move = function () {
     while (this._playOrder > 0) {
         var m = this._moveHistory[--this._playOrder];
         this._board.unmake_move(m);
-        this._lastIdx = MOVE_IDX(this._moveHistory[this._playOrder - 1]);
+        this._lastIdx = this._playOrder === 0 ? -1 : MOVE_IDX(this._moveHistory[this._playOrder - 1]);
         this.chang_side();
     }
     this.check_game_over();
