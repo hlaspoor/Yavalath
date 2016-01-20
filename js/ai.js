@@ -191,5 +191,9 @@ Ai.prototype.test = function (b, s) {
     this.clone_board(b);
     this._curSide = s;
     var mvs = this.generate_moves();
-    console.log(mvs);
+    var output = [];
+    for(var i = 0; i < mvs.length; i++) {
+        output.push(MOVE_NAME(mvs[i]));
+    }
+    console.log(output);
 };
