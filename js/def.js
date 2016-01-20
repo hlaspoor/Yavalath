@@ -22,6 +22,7 @@ var DIR = {
 };
 
 var FADE_SPEED = 200;
+var FADE_DELAY = 220;
 
 function XY_TO_IDX(x, y) {
     return x * 9 + y;

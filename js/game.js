@@ -9,6 +9,7 @@ function Game() {
     this._moveHistory = [];
     this._moveOrder = 0;
     this._playOrder = 0;
+    this._isGameOver = false;
     this._ai = new Ai();
 }
 
@@ -19,6 +20,7 @@ Game.prototype.reset = function () {
     this._moveHistory = [];
     this._moveOrder = 0;
     this._playOrder = 0;
+    this._isGameOver = false;
 };
 
 Game.prototype.new_game = function () {
@@ -117,10 +119,75 @@ Game.prototype.chang_side = function () {
     this._curSide ^= 3;
 };
 
-//Game.prototype.checkGameOver = function () {
-//
-//    return STONE.EMPTY;
-//};
+Game.prototype.check_dir = function (idx, dir) {
+    var wCount = 0;
+    var bCount = 0;
+    var side = this._board._stones[idx];
+    var curIdx;
+    curIdx = idx - dir;
+    while (curIdx >= 0 && this._board._edge[curIdx] === 0) {
+        if (this._board._stones[curIdx] !== STONE.EMPTY &&
+            side === this._board._stones[curIdx]) {
+            if (this._board._stones[curIdx] === STONE.WHITE) {
+                wCount++;
+            } else {
+                bCount++;
+            }
+        } else {
+            break;
+        }
+        curIdx -= dir;
+    }
+    curIdx = idx + dir;
+    while (curIdx < HEX_NUM && this._board._edge[curIdx] === 0) {
+        if (this._board._stones[curIdx] !== STONE.EMPTY &&
+            side === this._board._stones[curIdx]) {
+            if (this._board._stones[curIdx] === STONE.WHITE) {
+                wCount++;
+            } else {
+                bCount++;
+            }
+        } else {
+            break;
+        }
+        curIdx += dir;
+    }
+    if (wCount >= 2) {
+        return wCount === 2 ? STONE.BLACK : STONE.WHITE;
+    }
+    if (bCount >= 2) {
+        return bCount === 2 ? STONE.WHITE : STONE.BLACK;
+    }
+    return STONE.EMPTY;
+};
+
+Game.prototype.check_game_over = function () {
+    var s = STONE.EMPTY;
+    for(var idx = 0; idx < HEX_NUM; idx++) {
+        if(this._board._stones[idx] !== STONE.EMPTY) {
+            // 检测从左到右
+            s = this.check_dir(idx, DIR.RIGHT);
+            if (s !== STONE.EMPTY) {
+                this._isGameOver = true;
+                return s;
+            }
+            // 检测从右上到左下
+            s = this.check_dir(idx, DIR.LEFT_DOWN);
+            if (s !== STONE.EMPTY) {
+                this._isGameOver = true;
+                return s;
+            }
+            // 检测从左上到右下
+            s = this.check_dir(idx, DIR.RIGHT_DOWN);
+            if (s !== STONE.EMPTY) {
+                this._isGameOver = true;
+                return s;
+            }
+        }
+    }
+    this._isGameOver = false;
+    return s;
+};
 
 Game.prototype.make_move = function (m) {
     this._board.make_move(m);
@@ -148,6 +215,7 @@ Game.prototype.play_next_move = function () {
     this._board.make_move(m);
     this._lastIdx = MOVE_IDX(m);
     this.chang_side();
+    this.check_game_over();
     this._ui.update();
 };
 
@@ -159,6 +227,7 @@ Game.prototype.play_prev_move = function () {
     this._board.unmake_move(m);
     this._lastIdx = MOVE_IDX(this._moveHistory[this._playOrder - 1]);
     this.chang_side();
+    this.check_game_over();
     this._ui.update();
 };
 
@@ -169,6 +238,7 @@ Game.prototype.play_first_move = function () {
         this._lastIdx = MOVE_IDX(this._moveHistory[this._playOrder - 1]);
         this.chang_side();
     }
+    this.check_game_over();
     this._ui.update();
 };
 
@@ -179,26 +249,13 @@ Game.prototype.play_last_move = function () {
         this._lastIdx = MOVE_IDX(m);
         this.chang_side();
     }
+    this.check_game_over();
     this._ui.update();
 };
 
 Game.prototype.swap = function () {
     this._board.swap();
     this.chang_side();
-};
-
-Game.prototype.on_cell_click = function (idx) {
-    if (this._board._stones[idx] !== STONE.EMPTY) {
-        return;
-    }
-    if (this._playOrder !== this._moveOrder) {
-        // 移除该播放节点以后的所有走法后再加入新的走法
-        this._moveHistory.splice(this._playOrder, this._moveOrder - this._playOrder);
-        this._moveOrder = this._playOrder;
-    }
-    var m = MOVE(this._curSide, idx);
-    this.make_move(m);
-    this._ui.update();
 };
 
 Game.prototype.test = function () {

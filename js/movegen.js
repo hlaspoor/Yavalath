@@ -78,7 +78,7 @@ MoveGen.prototype.check_dir = function (idx, dir) {
     if (wCount >= 3 && wCountL < 3 && wCountR < 3) {
         return STONE.WHITE;
     }
-    if (bCount === 3 && bCountL < 3 && bCountR < 3) {
+    if (bCount >= 3 && bCountL < 3 && bCountR < 3) {
         return STONE.BLACK;
     }
     return STONE.EMPTY;
