@@ -4,610 +4,587 @@
     <meta charset="UTF-8">
     <title>Yavalath</title>
     <link rel="stylesheet" href="css/yavalath.css">
+    <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css">
 </head>
 <body>
-<div id="main_container">
-    <div id="left_container">
-        <div id="game_result_container">
-            <div id="game_result">
-            </div>
-        </div>
-        <div id="board_container">
-            <div id="board_bg">
-                <div class="hex_row oft_4">
-                    <div class="hex_bg"></div>
-                    <div class="hex_bg"></div>
-                    <div class="hex_bg"></div>
-                    <div class="hex_bg"></div>
-                    <div class="hex_bg"></div>
-                </div>
-                <div class="hex_row oft_3">
-                    <div class="hex_bg"></div>
-                    <div class="hex_bg"></div>
-                    <div class="hex_bg"></div>
-                    <div class="hex_bg"></div>
-                    <div class="hex_bg"></div>
-                    <div class="hex_bg"></div>
-                </div>
-                <div class="hex_row oft_2">
-                    <div class="hex_bg"></div>
-                    <div class="hex_bg"></div>
-                    <div class="hex_bg"></div>
-                    <div class="hex_bg"></div>
-                    <div class="hex_bg"></div>
-                    <div class="hex_bg"></div>
-                    <div class="hex_bg"></div>
-                </div>
-                <div class="hex_row oft_1">
-                    <div class="hex_bg"></div>
-                    <div class="hex_bg"></div>
-                    <div class="hex_bg"></div>
-                    <div class="hex_bg"></div>
-                    <div class="hex_bg"></div>
-                    <div class="hex_bg"></div>
-                    <div class="hex_bg"></div>
-                    <div class="hex_bg"></div>
-                </div>
-                <div class="hex_row">
-                    <div class="hex_bg"></div>
-                    <div class="hex_bg"></div>
-                    <div class="hex_bg"></div>
-                    <div class="hex_bg"></div>
-                    <div class="hex_bg"></div>
-                    <div class="hex_bg"></div>
-                    <div class="hex_bg"></div>
-                    <div class="hex_bg"></div>
-                    <div class="hex_bg"></div>
-                </div>
-                <div class="hex_row oft_1">
-                    <div class="hex_bg"></div>
-                    <div class="hex_bg"></div>
-                    <div class="hex_bg"></div>
-                    <div class="hex_bg"></div>
-                    <div class="hex_bg"></div>
-                    <div class="hex_bg"></div>
-                    <div class="hex_bg"></div>
-                    <div class="hex_bg"></div>
-                </div>
-                <div class="hex_row oft_2">
-                    <div class="hex_bg"></div>
-                    <div class="hex_bg"></div>
-                    <div class="hex_bg"></div>
-                    <div class="hex_bg"></div>
-                    <div class="hex_bg"></div>
-                    <div class="hex_bg"></div>
-                    <div class="hex_bg"></div>
-                </div>
-                <div class="hex_row oft_3">
-                    <div class="hex_bg"></div>
-                    <div class="hex_bg"></div>
-                    <div class="hex_bg"></div>
-                    <div class="hex_bg"></div>
-                    <div class="hex_bg"></div>
-                    <div class="hex_bg"></div>
-                </div>
-                <div class="hex_row oft_4">
-                    <div class="hex_bg"></div>
-                    <div class="hex_bg"></div>
-                    <div class="hex_bg"></div>
-                    <div class="hex_bg"></div>
-                    <div class="hex_bg"></div>
+<div id="page_container">
+    <div id="page_left_container">
+        <div id="left_container">
+            <div id="game_result_container">
+                <div id="game_result">
                 </div>
             </div>
-            <div id="board">
-                <div class="hex_row oft_5">
-                    <div class="coord"></div>
-                    <div class="coord">1</div>
-                    <div class="coord">2</div>
-                    <div class="coord">3</div>
-                    <div class="coord">4</div>
-                    <div class="coord">5</div>
-                </div>
-                <div class="hex_row oft_4">
-                    <div class="coord">A</div>
-                    <div id="h0" class="hex">
-                        <div class="stone">
-                            <div class="stone_num"></div>
-                            <div class="moon"></div>
-                        </div>
+            <div id="board_container">
+                <div id="board_bg">
+                    <div class="hex_row oft_4">
+                        <div class="hex_bg"></div>
+                        <div class="hex_bg"></div>
+                        <div class="hex_bg"></div>
+                        <div class="hex_bg"></div>
+                        <div class="hex_bg"></div>
                     </div>
-                    <div id="h1" class="hex">
-                        <div class="stone">
-                            <div class="stone_num"></div>
-                            <div class="moon"></div>
-                        </div>
+                    <div class="hex_row oft_3">
+                        <div class="hex_bg"></div>
+                        <div class="hex_bg"></div>
+                        <div class="hex_bg"></div>
+                        <div class="hex_bg"></div>
+                        <div class="hex_bg"></div>
+                        <div class="hex_bg"></div>
                     </div>
-                    <div id="h2" class="hex">
-                        <div class="stone">
-                            <div class="stone_num"></div>
-                            <div class="moon"></div>
-                        </div>
+                    <div class="hex_row oft_2">
+                        <div class="hex_bg"></div>
+                        <div class="hex_bg"></div>
+                        <div class="hex_bg"></div>
+                        <div class="hex_bg"></div>
+                        <div class="hex_bg"></div>
+                        <div class="hex_bg"></div>
+                        <div class="hex_bg"></div>
                     </div>
-                    <div id="h3" class="hex">
-                        <div class="stone">
-                            <div class="stone_num"></div>
-                            <div class="moon"></div>
-                        </div>
+                    <div class="hex_row oft_1">
+                        <div class="hex_bg"></div>
+                        <div class="hex_bg"></div>
+                        <div class="hex_bg"></div>
+                        <div class="hex_bg"></div>
+                        <div class="hex_bg"></div>
+                        <div class="hex_bg"></div>
+                        <div class="hex_bg"></div>
+                        <div class="hex_bg"></div>
                     </div>
-                    <div id="h4" class="hex">
-                        <div class="stone">
-                            <div class="stone_num"></div>
-                            <div class="moon"></div>
-                        </div>
+                    <div class="hex_row">
+                        <div class="hex_bg"></div>
+                        <div class="hex_bg"></div>
+                        <div class="hex_bg"></div>
+                        <div class="hex_bg"></div>
+                        <div class="hex_bg"></div>
+                        <div class="hex_bg"></div>
+                        <div class="hex_bg"></div>
+                        <div class="hex_bg"></div>
+                        <div class="hex_bg"></div>
                     </div>
-                    <div class="coord">6</div>
-                </div>
-                <div class="hex_row oft_3">
-                    <div class="coord">B</div>
-                    <div id="h9" class="hex">
-                        <div class="stone">
-                            <div class="stone_num"></div>
-                            <div class="moon"></div>
-                        </div>
+                    <div class="hex_row oft_1">
+                        <div class="hex_bg"></div>
+                        <div class="hex_bg"></div>
+                        <div class="hex_bg"></div>
+                        <div class="hex_bg"></div>
+                        <div class="hex_bg"></div>
+                        <div class="hex_bg"></div>
+                        <div class="hex_bg"></div>
+                        <div class="hex_bg"></div>
                     </div>
-                    <div id="h10" class="hex">
-                        <div class="stone">
-                            <div class="stone_num"></div>
-                            <div class="moon"></div>
-                        </div>
+                    <div class="hex_row oft_2">
+                        <div class="hex_bg"></div>
+                        <div class="hex_bg"></div>
+                        <div class="hex_bg"></div>
+                        <div class="hex_bg"></div>
+                        <div class="hex_bg"></div>
+                        <div class="hex_bg"></div>
+                        <div class="hex_bg"></div>
                     </div>
-                    <div id="h11" class="hex">
-                        <div class="stone">
-                            <div class="stone_num"></div>
-                            <div class="moon"></div>
-                        </div>
+                    <div class="hex_row oft_3">
+                        <div class="hex_bg"></div>
+                        <div class="hex_bg"></div>
+                        <div class="hex_bg"></div>
+                        <div class="hex_bg"></div>
+                        <div class="hex_bg"></div>
+                        <div class="hex_bg"></div>
                     </div>
-                    <div id="h12" class="hex">
-                        <div class="stone">
-                            <div class="stone_num"></div>
-                            <div class="moon"></div>
-                        </div>
-                    </div>
-                    <div id="h13" class="hex">
-                        <div class="stone">
-                            <div class="stone_num"></div>
-                            <div class="moon"></div>
-                        </div>
-                    </div>
-                    <div id="h14" class="hex">
-                        <div class="stone">
-                            <div class="stone_num"></div>
-                            <div class="moon"></div>
-                        </div>
-                    </div>
-                    <div class="coord">7</div>
-                </div>
-                <div class="hex_row oft_2">
-                    <div class="coord">C</div>
-                    <div id="h18" class="hex">
-                        <div class="stone">
-                            <div class="stone_num"></div>
-                            <div class="moon"></div>
-                        </div>
-                    </div>
-                    <div id="h19" class="hex">
-                        <div class="stone">
-                            <div class="stone_num"></div>
-                            <div class="moon"></div>
-                        </div>
-                    </div>
-                    <div id="h20" class="hex">
-                        <div class="stone">
-                            <div class="stone_num"></div>
-                            <div class="moon"></div>
-                        </div>
-                    </div>
-                    <div id="h21" class="hex">
-                        <div class="stone">
-                            <div class="stone_num"></div>
-                            <div class="moon"></div>
-                        </div>
-                    </div>
-                    <div id="h22" class="hex">
-                        <div class="stone">
-                            <div class="stone_num"></div>
-                            <div class="moon"></div>
-                        </div>
-                    </div>
-                    <div id="h23" class="hex">
-                        <div class="stone">
-                            <div class="stone_num"></div>
-                            <div class="moon"></div>
-                        </div>
-                    </div>
-                    <div id="h24" class="hex">
-                        <div class="stone">
-                            <div class="stone_num"></div>
-                            <div class="moon"></div>
-                        </div>
-                    </div>
-                    <div class="coord">8</div>
-                </div>
-                <div class="hex_row oft_1">
-                    <div class="coord">D</div>
-                    <div id="h27" class="hex">
-                        <div class="stone">
-                            <div class="stone_num"></div>
-                            <div class="moon"></div>
-                        </div>
-                    </div>
-                    <div id="h28" class="hex">
-                        <div class="stone">
-                            <div class="stone_num"></div>
-                            <div class="moon"></div>
-                        </div>
-                    </div>
-                    <div id="h29" class="hex">
-                        <div class="stone">
-                            <div class="stone_num"></div>
-                            <div class="moon"></div>
-                        </div>
-                    </div>
-                    <div id="h30" class="hex">
-                        <div class="stone">
-                            <div class="stone_num"></div>
-                            <div class="moon"></div>
-                        </div>
-                    </div>
-                    <div id="h31" class="hex">
-                        <div class="stone">
-                            <div class="stone_num"></div>
-                            <div class="moon"></div>
-                        </div>
-                    </div>
-                    <div id="h32" class="hex">
-                        <div class="stone">
-                            <div class="stone_num"></div>
-                            <div class="moon"></div>
-                        </div>
-                    </div>
-                    <div id="h33" class="hex">
-                        <div class="stone">
-                            <div class="stone_num"></div>
-                            <div class="moon"></div>
-                        </div>
-                    </div>
-                    <div id="h34" class="hex">
-                        <div class="stone">
-                            <div class="stone_num"></div>
-                            <div class="moon"></div>
-                        </div>
-                    </div>
-                    <div class="coord">9</div>
-                </div>
-                <div class="hex_row">
-                    <div class="coord">E</div>
-                    <div id="h36" class="hex">
-                        <div class="stone">
-                            <div class="stone_num"></div>
-                            <div class="moon"></div>
-                        </div>
-                    </div>
-                    <div id="h37" class="hex">
-                        <div class="stone">
-                            <div class="stone_num"></div>
-                            <div class="moon"></div>
-                        </div>
-                    </div>
-                    <div id="h38" class="hex">
-                        <div class="stone">
-                            <div class="stone_num"></div>
-                            <div class="moon"></div>
-                        </div>
-                    </div>
-                    <div id="h39" class="hex">
-                        <div class="stone">
-                            <div class="stone_num"></div>
-                            <div class="moon"></div>
-                        </div>
-                    </div>
-                    <div id="h40" class="hex">
-                        <div class="stone">
-                            <div class="stone_num"></div>
-                            <div class="moon"></div>
-                        </div>
-                    </div>
-                    <div id="h41" class="hex">
-                        <div class="stone">
-                            <div class="stone_num"></div>
-                            <div class="moon"></div>
-                        </div>
-                    </div>
-                    <div id="h42" class="hex">
-                        <div class="stone">
-                            <div class="stone_num"></div>
-                            <div class="moon"></div>
-                        </div>
-                    </div>
-                    <div id="h43" class="hex">
-                        <div class="stone">
-                            <div class="stone_num"></div>
-                            <div class="moon"></div>
-                        </div>
-                    </div>
-                    <div id="h44" class="hex">
-                        <div class="stone">
-                            <div class="stone_num"></div>
-                            <div class="moon"></div>
-                        </div>
+                    <div class="hex_row oft_4">
+                        <div class="hex_bg"></div>
+                        <div class="hex_bg"></div>
+                        <div class="hex_bg"></div>
+                        <div class="hex_bg"></div>
+                        <div class="hex_bg"></div>
                     </div>
                 </div>
-                <div class="hex_row oft_1">
-                    <div class="coord">F</div>
-                    <div id="h46" class="hex">
-                        <div class="stone">
-                            <div class="stone_num"></div>
-                            <div class="moon"></div>
+                <div id="board">
+                    <div class="hex_row oft_5">
+                        <div class="coord"></div>
+                        <div class="coord">1</div>
+                        <div class="coord">2</div>
+                        <div class="coord">3</div>
+                        <div class="coord">4</div>
+                        <div class="coord">5</div>
+                    </div>
+                    <div class="hex_row oft_4">
+                        <div class="coord">A</div>
+                        <div id="h0" class="hex">
+                            <div class="stone">
+                                <div class="stone_num"></div>
+                                <div class="moon"></div>
+                            </div>
+                        </div>
+                        <div id="h1" class="hex">
+                            <div class="stone">
+                                <div class="stone_num"></div>
+                                <div class="moon"></div>
+                            </div>
+                        </div>
+                        <div id="h2" class="hex">
+                            <div class="stone">
+                                <div class="stone_num"></div>
+                                <div class="moon"></div>
+                            </div>
+                        </div>
+                        <div id="h3" class="hex">
+                            <div class="stone">
+                                <div class="stone_num"></div>
+                                <div class="moon"></div>
+                            </div>
+                        </div>
+                        <div id="h4" class="hex">
+                            <div class="stone">
+                                <div class="stone_num"></div>
+                                <div class="moon"></div>
+                            </div>
+                        </div>
+                        <div class="coord">6</div>
+                    </div>
+                    <div class="hex_row oft_3">
+                        <div class="coord">B</div>
+                        <div id="h9" class="hex">
+                            <div class="stone">
+                                <div class="stone_num"></div>
+                                <div class="moon"></div>
+                            </div>
+                        </div>
+                        <div id="h10" class="hex">
+                            <div class="stone">
+                                <div class="stone_num"></div>
+                                <div class="moon"></div>
+                            </div>
+                        </div>
+                        <div id="h11" class="hex">
+                            <div class="stone">
+                                <div class="stone_num"></div>
+                                <div class="moon"></div>
+                            </div>
+                        </div>
+                        <div id="h12" class="hex">
+                            <div class="stone">
+                                <div class="stone_num"></div>
+                                <div class="moon"></div>
+                            </div>
+                        </div>
+                        <div id="h13" class="hex">
+                            <div class="stone">
+                                <div class="stone_num"></div>
+                                <div class="moon"></div>
+                            </div>
+                        </div>
+                        <div id="h14" class="hex">
+                            <div class="stone">
+                                <div class="stone_num"></div>
+                                <div class="moon"></div>
+                            </div>
+                        </div>
+                        <div class="coord">7</div>
+                    </div>
+                    <div class="hex_row oft_2">
+                        <div class="coord">C</div>
+                        <div id="h18" class="hex">
+                            <div class="stone">
+                                <div class="stone_num"></div>
+                                <div class="moon"></div>
+                            </div>
+                        </div>
+                        <div id="h19" class="hex">
+                            <div class="stone">
+                                <div class="stone_num"></div>
+                                <div class="moon"></div>
+                            </div>
+                        </div>
+                        <div id="h20" class="hex">
+                            <div class="stone">
+                                <div class="stone_num"></div>
+                                <div class="moon"></div>
+                            </div>
+                        </div>
+                        <div id="h21" class="hex">
+                            <div class="stone">
+                                <div class="stone_num"></div>
+                                <div class="moon"></div>
+                            </div>
+                        </div>
+                        <div id="h22" class="hex">
+                            <div class="stone">
+                                <div class="stone_num"></div>
+                                <div class="moon"></div>
+                            </div>
+                        </div>
+                        <div id="h23" class="hex">
+                            <div class="stone">
+                                <div class="stone_num"></div>
+                                <div class="moon"></div>
+                            </div>
+                        </div>
+                        <div id="h24" class="hex">
+                            <div class="stone">
+                                <div class="stone_num"></div>
+                                <div class="moon"></div>
+                            </div>
+                        </div>
+                        <div class="coord">8</div>
+                    </div>
+                    <div class="hex_row oft_1">
+                        <div class="coord">D</div>
+                        <div id="h27" class="hex">
+                            <div class="stone">
+                                <div class="stone_num"></div>
+                                <div class="moon"></div>
+                            </div>
+                        </div>
+                        <div id="h28" class="hex">
+                            <div class="stone">
+                                <div class="stone_num"></div>
+                                <div class="moon"></div>
+                            </div>
+                        </div>
+                        <div id="h29" class="hex">
+                            <div class="stone">
+                                <div class="stone_num"></div>
+                                <div class="moon"></div>
+                            </div>
+                        </div>
+                        <div id="h30" class="hex">
+                            <div class="stone">
+                                <div class="stone_num"></div>
+                                <div class="moon"></div>
+                            </div>
+                        </div>
+                        <div id="h31" class="hex">
+                            <div class="stone">
+                                <div class="stone_num"></div>
+                                <div class="moon"></div>
+                            </div>
+                        </div>
+                        <div id="h32" class="hex">
+                            <div class="stone">
+                                <div class="stone_num"></div>
+                                <div class="moon"></div>
+                            </div>
+                        </div>
+                        <div id="h33" class="hex">
+                            <div class="stone">
+                                <div class="stone_num"></div>
+                                <div class="moon"></div>
+                            </div>
+                        </div>
+                        <div id="h34" class="hex">
+                            <div class="stone">
+                                <div class="stone_num"></div>
+                                <div class="moon"></div>
+                            </div>
+                        </div>
+                        <div class="coord">9</div>
+                    </div>
+                    <div class="hex_row">
+                        <div class="coord">E</div>
+                        <div id="h36" class="hex">
+                            <div class="stone">
+                                <div class="stone_num"></div>
+                                <div class="moon"></div>
+                            </div>
+                        </div>
+                        <div id="h37" class="hex">
+                            <div class="stone">
+                                <div class="stone_num"></div>
+                                <div class="moon"></div>
+                            </div>
+                        </div>
+                        <div id="h38" class="hex">
+                            <div class="stone">
+                                <div class="stone_num"></div>
+                                <div class="moon"></div>
+                            </div>
+                        </div>
+                        <div id="h39" class="hex">
+                            <div class="stone">
+                                <div class="stone_num"></div>
+                                <div class="moon"></div>
+                            </div>
+                        </div>
+                        <div id="h40" class="hex">
+                            <div class="stone">
+                                <div class="stone_num"></div>
+                                <div class="moon"></div>
+                            </div>
+                        </div>
+                        <div id="h41" class="hex">
+                            <div class="stone">
+                                <div class="stone_num"></div>
+                                <div class="moon"></div>
+                            </div>
+                        </div>
+                        <div id="h42" class="hex">
+                            <div class="stone">
+                                <div class="stone_num"></div>
+                                <div class="moon"></div>
+                            </div>
+                        </div>
+                        <div id="h43" class="hex">
+                            <div class="stone">
+                                <div class="stone_num"></div>
+                                <div class="moon"></div>
+                            </div>
+                        </div>
+                        <div id="h44" class="hex">
+                            <div class="stone">
+                                <div class="stone_num"></div>
+                                <div class="moon"></div>
+                            </div>
                         </div>
                     </div>
-                    <div id="h47" class="hex">
-                        <div class="stone">
-                            <div class="stone_num"></div>
-                            <div class="moon"></div>
+                    <div class="hex_row oft_1">
+                        <div class="coord">F</div>
+                        <div id="h46" class="hex">
+                            <div class="stone">
+                                <div class="stone_num"></div>
+                                <div class="moon"></div>
+                            </div>
+                        </div>
+                        <div id="h47" class="hex">
+                            <div class="stone">
+                                <div class="stone_num"></div>
+                                <div class="moon"></div>
+                            </div>
+                        </div>
+                        <div id="h48" class="hex">
+                            <div class="stone">
+                                <div class="stone_num"></div>
+                                <div class="moon"></div>
+                            </div>
+                        </div>
+                        <div id="h49" class="hex">
+                            <div class="stone">
+                                <div class="stone_num"></div>
+                                <div class="moon"></div>
+                            </div>
+                        </div>
+                        <div id="h50" class="hex">
+                            <div class="stone">
+                                <div class="stone_num"></div>
+                                <div class="moon"></div>
+                            </div>
+                        </div>
+                        <div id="h51" class="hex">
+                            <div class="stone">
+                                <div class="stone_num"></div>
+                                <div class="moon"></div>
+                            </div>
+                        </div>
+                        <div id="h52" class="hex">
+                            <div class="stone">
+                                <div class="stone_num"></div>
+                                <div class="moon"></div>
+                            </div>
+                        </div>
+                        <div id="h53" class="hex">
+                            <div class="stone">
+                                <div class="stone_num"></div>
+                                <div class="moon"></div>
+                            </div>
                         </div>
                     </div>
-                    <div id="h48" class="hex">
-                        <div class="stone">
-                            <div class="stone_num"></div>
-                            <div class="moon"></div>
+                    <div class="hex_row oft_2">
+                        <div class="coord">G</div>
+                        <div id="h56" class="hex">
+                            <div class="stone">
+                                <div class="stone_num"></div>
+                                <div class="moon"></div>
+                            </div>
+                        </div>
+                        <div id="h57" class="hex">
+                            <div class="stone">
+                                <div class="stone_num"></div>
+                                <div class="moon"></div>
+                            </div>
+                        </div>
+                        <div id="h58" class="hex">
+                            <div class="stone">
+                                <div class="stone_num"></div>
+                                <div class="moon"></div>
+                            </div>
+                        </div>
+                        <div id="h59" class="hex">
+                            <div class="stone">
+                                <div class="stone_num"></div>
+                                <div class="moon"></div>
+                            </div>
+                        </div>
+                        <div id="h60" class="hex">
+                            <div class="stone">
+                                <div class="stone_num"></div>
+                                <div class="moon"></div>
+                            </div>
+                        </div>
+                        <div id="h61" class="hex">
+                            <div class="stone">
+                                <div class="stone_num"></div>
+                                <div class="moon"></div>
+                            </div>
+                        </div>
+                        <div id="h62" class="hex">
+                            <div class="stone">
+                                <div class="stone_num"></div>
+                                <div class="moon"></div>
+                            </div>
                         </div>
                     </div>
-                    <div id="h49" class="hex">
-                        <div class="stone">
-                            <div class="stone_num"></div>
-                            <div class="moon"></div>
+                    <div class="hex_row oft_3">
+                        <div class="coord">H</div>
+                        <div id="h66" class="hex">
+                            <div class="stone">
+                                <div class="stone_num"></div>
+                                <div class="moon"></div>
+                            </div>
+                        </div>
+                        <div id="h67" class="hex">
+                            <div class="stone">
+                                <div class="stone_num"></div>
+                                <div class="moon"></div>
+                            </div>
+                        </div>
+                        <div id="h68" class="hex">
+                            <div class="stone">
+                                <div class="stone_num"></div>
+                                <div class="moon"></div>
+                            </div>
+                        </div>
+                        <div id="h69" class="hex">
+                            <div class="stone">
+                                <div class="stone_num"></div>
+                                <div class="moon"></div>
+                            </div>
+                        </div>
+                        <div id="h70" class="hex">
+                            <div class="stone">
+                                <div class="stone_num"></div>
+                                <div class="moon"></div>
+                            </div>
+                        </div>
+                        <div id="h71" class="hex">
+                            <div class="stone">
+                                <div class="stone_num"></div>
+                                <div class="moon"></div>
+                            </div>
                         </div>
                     </div>
-                    <div id="h50" class="hex">
-                        <div class="stone">
-                            <div class="stone_num"></div>
-                            <div class="moon"></div>
+                    <div class="hex_row oft_4">
+                        <div class="coord">I</div>
+                        <div id="h76" class="hex">
+                            <div class="stone">
+                                <div class="stone_num"></div>
+                                <div class="moon"></div>
+                            </div>
+                        </div>
+                        <div id="h77" class="hex">
+                            <div class="stone">
+                                <div class="stone_num"></div>
+                                <div class="moon"></div>
+                            </div>
+                        </div>
+                        <div id="h78" class="hex">
+                            <div class="stone">
+                                <div class="stone_num"></div>
+                                <div class="moon"></div>
+                            </div>
+                        </div>
+                        <div id="h79" class="hex">
+                            <div class="stone">
+                                <div class="stone_num"></div>
+                                <div class="moon"></div>
+                            </div>
+                        </div>
+                        <div id="h80" class="hex">
+                            <div class="stone">
+                                <div class="stone_num"></div>
+                                <div class="moon"></div>
+                            </div>
                         </div>
                     </div>
-                    <div id="h51" class="hex">
-                        <div class="stone">
-                            <div class="stone_num"></div>
-                            <div class="moon"></div>
-                        </div>
-                    </div>
-                    <div id="h52" class="hex">
-                        <div class="stone">
-                            <div class="stone_num"></div>
-                            <div class="moon"></div>
-                        </div>
-                    </div>
-                    <div id="h53" class="hex">
-                        <div class="stone">
-                            <div class="stone_num"></div>
-                            <div class="moon"></div>
-                        </div>
-                    </div>
+                    <div class="dot"></div>
                 </div>
-                <div class="hex_row oft_2">
-                    <div class="coord">G</div>
-                    <div id="h56" class="hex">
-                        <div class="stone">
-                            <div class="stone_num"></div>
-                            <div class="moon"></div>
-                        </div>
-                    </div>
-                    <div id="h57" class="hex">
-                        <div class="stone">
-                            <div class="stone_num"></div>
-                            <div class="moon"></div>
-                        </div>
-                    </div>
-                    <div id="h58" class="hex">
-                        <div class="stone">
-                            <div class="stone_num"></div>
-                            <div class="moon"></div>
-                        </div>
-                    </div>
-                    <div id="h59" class="hex">
-                        <div class="stone">
-                            <div class="stone_num"></div>
-                            <div class="moon"></div>
-                        </div>
-                    </div>
-                    <div id="h60" class="hex">
-                        <div class="stone">
-                            <div class="stone_num"></div>
-                            <div class="moon"></div>
-                        </div>
-                    </div>
-                    <div id="h61" class="hex">
-                        <div class="stone">
-                            <div class="stone_num"></div>
-                            <div class="moon"></div>
-                        </div>
-                    </div>
-                    <div id="h62" class="hex">
-                        <div class="stone">
-                            <div class="stone_num"></div>
-                            <div class="moon"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="hex_row oft_3">
-                    <div class="coord">H</div>
-                    <div id="h66" class="hex">
-                        <div class="stone">
-                            <div class="stone_num"></div>
-                            <div class="moon"></div>
-                        </div>
-                    </div>
-                    <div id="h67" class="hex">
-                        <div class="stone">
-                            <div class="stone_num"></div>
-                            <div class="moon"></div>
-                        </div>
-                    </div>
-                    <div id="h68" class="hex">
-                        <div class="stone">
-                            <div class="stone_num"></div>
-                            <div class="moon"></div>
-                        </div>
-                    </div>
-                    <div id="h69" class="hex">
-                        <div class="stone">
-                            <div class="stone_num"></div>
-                            <div class="moon"></div>
-                        </div>
-                    </div>
-                    <div id="h70" class="hex">
-                        <div class="stone">
-                            <div class="stone_num"></div>
-                            <div class="moon"></div>
-                        </div>
-                    </div>
-                    <div id="h71" class="hex">
-                        <div class="stone">
-                            <div class="stone_num"></div>
-                            <div class="moon"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="hex_row oft_4">
-                    <div class="coord">I</div>
-                    <div id="h76" class="hex">
-                        <div class="stone">
-                            <div class="stone_num"></div>
-                            <div class="moon"></div>
-                        </div>
-                    </div>
-                    <div id="h77" class="hex">
-                        <div class="stone">
-                            <div class="stone_num"></div>
-                            <div class="moon"></div>
-                        </div>
-                    </div>
-                    <div id="h78" class="hex">
-                        <div class="stone">
-                            <div class="stone_num"></div>
-                            <div class="moon"></div>
-                        </div>
-                    </div>
-                    <div id="h79" class="hex">
-                        <div class="stone">
-                            <div class="stone_num"></div>
-                            <div class="moon"></div>
-                        </div>
-                    </div>
-                    <div id="h80" class="hex">
-                        <div class="stone">
-                            <div class="stone_num"></div>
-                            <div class="moon"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="dot"></div>
             </div>
-        </div>
-        <div id="tip_container">
-            Game info displayed here!
+            <div id="tip_container">
+                Game info displayed here!
+            </div>
         </div>
     </div>
-    <div id="right_container">
-        <div id="desc_container">
-            <h1>Yavalath</h1>
-            <!--<h2>Board</h2>-->
-            <!--<p>-->
-            <!--Yavalath is played on a hexagonal board with five cells per side.-->
-            <!--</p>-->
-            <!--<h2>Object of the Game</h2>-->
-            <!--<p>-->
-            <!--The goal of Yavalath is to place four stones in a row or to force an opponent to place three stones in a-->
-            <!--row.-->
-            <!--</p>-->
-            <!--<h2>Play</h2>-->
-            <!--<p>-->
-            <!--The game begins with an empty board.<br>-->
-            <!--Each player has an allocated color: White or Black.<br>-->
-            <!--Starting with White, players take turns placing a stone of their color in any empty cell on the-->
-            <!--board.<br>-->
-            <!--Since the first player has a distinct advantage, the pie rule is generally used to the game fair.-->
-            <!--This rule allows the second player to switch colors as his first move.-->
-            <!--</p>-->
-            <!--<h2>End of Game</h2>-->
-            <!--<p>-->
-            <!--The game ends in one of the following cases:-->
-            <!--<ul>-->
-            <!--<li>-->
-            <!--One of the players wins a game by making a line of four (or more) stones of his color.-->
-            <!--</li>-->
-            <!--<li>-->
-            <!--One of the players loses a game by making a line of three stones of his color without making a line-->
-            <!--of four stones the same time.-->
-            <!--</li>-->
-            <!--<li>-->
-            <!--The board fills up before either player wins or loses. In this case the game ends up in a draw.-->
-            <!--</li>-->
-            <!--</ul>-->
-            <!--</p>-->
-            <p>
-                Yavalath is an abstract board game for two or three players,
-                invented by a computer program called LUDI.
-                It has an easy rule set that any player can pick up immediately, but which produces surprisingly tricky
-                emergent play.
-            </p>
-            <h2>Rules</h2>
-            <p>
-                The board starts empty.<br>
-                Two players take turns adding a piece of their colour to an empty cell.<br>
-                <b>Win</b> by making a line-of-4 (or more) pieces of your colour.<br>
-                <b>Lose</b> by making a line-of-3 pieces of your colour beforehand.<br>
-                <b>Draw</b> if the board otherwise fills up.<br>
-                No, players are not allowed to pass.
-            </p>
-        </div>
-        <div>
-            <h2>FEN</h2>
-            <div>
-                <div id="fen" style="white-space:nowrap;"></div>
+    <div id="page_right_container">
+        <div id="right_container">
+            <div id="desc_container">
+                <h1>Yavalath</h1>
+                <p>
+                    Yavalath is an abstract board game for two or three players,
+                    invented by a computer program called LUDI.
+                    It has an easy rule set that any player can pick up immediately, but which produces surprisingly tricky
+                    emergent play.
+                </p>
+                <h2>RULES</h2>
+                <p>
+                    The board starts empty.<br>
+                    Two players take turns adding a piece of their color to an empty cell.<br>
+                    <b>Win</b> by making a line-of-4 (or more) pieces of your color.<br>
+                    <b>Lose</b> by making a line-of-3 pieces of your color beforehand.<br>
+                    <b>Draw</b> if the board otherwise fills up.<br>
+                    No, players are not allowed to pass.
+                </p>
             </div>
-            <input type="text" id="txt_fen" style="width: 280px;" value="5/6/2w4/2b2b2/3bwwbw1/3wb3/3b3/2w3/5 w"
-                   title="">
-            <button type="button" id="btn_load_fen">
-                Load
-            </button>
-        </div>
-        <h2>Control</h2>
-        <div>
-            <button type="button" class="btn" id="btn_first">
-                First
-            </button>
-            <button type="button" class="btn" id="btn_prev">
-                Prev
-            </button>
-            <button type="button" class="btn" id="btn_next">
-                Next
-            </button>
-            <button type="button" class="btn" id="btn_last">
-                Last
-            </button>
-            <button type="button" class="btn" id="btn_swap">
-                Swap
-            </button>
-            <button type="button" class="btn" id="btn_test">
-                Test
-            </button>
-        </div>
-        <h2>Options</h2>
-        <div>
-            <input type="checkbox" id="chk_show_last_move" name="chk_show_last_move" checked="checked">
-            <label for="chk_show_last_move">Show Last Move</label>
-        </div>
-        <div>
-            <input type="checkbox" id="chk_show_move_order" name="chk_show_move_order" checked="checked">
-            <label for="chk_show_move_order">Show Move Order</label>
-        </div>
-        <div>
-            <input type="checkbox" id="chk_allow_swap" name="chk_allow_swap" checked="checked">
-            <label for="chk_allow_swap">Allow Swap</label>
+            <div>
+                <h2>FEN</h2>
+                <div>
+                    <div id="fen" style="white-space:nowrap; font-family: Arial;"></div>
+                </div>
+                <input type="text" id="txt_fen" style="width: 280px;" value="5/6/2w4/2b2b2/3bwwbw1/3wb3/3b3/2w3/5 w"
+                       title="">
+                <button type="button" id="btn_load_fen">
+                    Load
+                </button>
+            </div>
+            <h2>CONTROL</h2>
+            <div>
+                <button type="button" class="btn" id="btn_first">
+                    First
+                </button>
+                <button type="button" class="btn" id="btn_prev">
+                    Prev
+                </button>
+                <button type="button" class="btn" id="btn_next">
+                    Next
+                </button>
+                <button type="button" class="btn" id="btn_last">
+                    Last
+                </button>
+                <button type="button" class="btn" id="btn_swap">
+                    Swap
+                </button>
+                <button type="button" class="btn" id="btn_test">
+                    Test
+                </button>
+            </div>
+            <h2>OPTION</h2>
+            <div>
+                <input type="checkbox" id="chk_show_last_move" name="chk_show_last_move" checked="checked">
+                <label for="chk_show_last_move">Show Last Move</label>
+            </div>
+            <div>
+                <input type="checkbox" id="chk_show_move_order" name="chk_show_move_order" checked="checked">
+                <label for="chk_show_move_order">Show Move Order</label>
+            </div>
+            <div>
+                <input type="checkbox" id="chk_allow_swap" name="chk_allow_swap" checked="checked">
+                <label for="chk_allow_swap">Allow Swap</label>
+            </div>
+            <div style="margin-top: 30px;">
+                <p>
+                    Source code can be found on <a href="https://github.com/hlaspoor/Yavalath">GitHub</a>.
+                </p>
+            </div>
         </div>
     </div>
 </div>
 <script src="js/jquery-1.12.0.min.js"></script>
+<script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
 <script src="js/def.js"></script>
 <script src="js/ui.js"></script>
 <script src="js/board.js"></script>

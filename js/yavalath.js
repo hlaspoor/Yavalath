@@ -1,6 +1,11 @@
 "use strict";
 
 $(function () {
+    $("#page_right_container").mCustomScrollbar({
+        theme: "minimal-dark",
+        scrollInertia: 0
+    });
+
     var g = new Game();
     g.new_game();
 
