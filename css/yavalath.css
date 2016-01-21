@@ -266,14 +266,13 @@ body {
 }
 
 #main_container {
-    width: 1050px;
-    min-width: 1050px;
     margin: 0 auto;
 }
 
 #left_container {
     float: right;
     width: 550px;
+    padding-left: 20px;
 }
 
 #right_container {
@@ -285,7 +284,7 @@ body {
 
 #game_result_container {
     height: 29px;
-    width: 100%;
+    width: 543px;
     margin: 0 auto;
 }
 
