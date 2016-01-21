@@ -165,7 +165,6 @@ UI.prototype.update = function () {
             stone.prepend(dot);
         }
     });
-
     this.show_fen();
     this.update_playback();
     this.update_swap();

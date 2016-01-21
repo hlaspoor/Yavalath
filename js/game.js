@@ -146,7 +146,7 @@ Game.prototype.check_dir = function (idx, dir) {
         return wCount === 2 ? RESULT_STA.WHITE_THREE : RESULT_STA.WHITE_FOUR;
     }
     if (bCount >= 2) {
-        return wCount === 2 ? RESULT_STA.BLACK_THREE : RESULT_STA.BLACK_FOUR;
+        return bCount === 2 ? RESULT_STA.BLACK_THREE : RESULT_STA.BLACK_FOUR;
     }
     return RESULT_STA.NONE;
 };
@@ -207,8 +207,8 @@ Game.prototype.check_game_over = function () {
         this._isGameOver = STONE.BLACK;
         return STONE.BLACK;
     } else if(bThreeCount > 0) {
-        this._isGameOver = STONE.BLACK;
-        return STONE.BLACK;
+        this._isGameOver = STONE.WHITE;
+        return STONE.WHITE;
     }
     if(count === 61) {
         this._isGameOver = RESULT.DRAW;
