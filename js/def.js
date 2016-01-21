@@ -16,6 +16,14 @@ var RESULT = {
     "DRAW": 3
 };
 
+var RESULT_STA = {
+    "NONE": 0,
+    "WHITE_FOUR": 1,
+    "BLACK_FOUR": 2,
+    "WHITE_THREE": 4,
+    "BLACK_THREE": 5
+};
+
 var COORD_X_CHAR = "ABCDEFGHI";
 var COORD_Y_CHAR = "123456789";
 
@@ -28,7 +36,7 @@ var DIR = {
     "RIGHT_UP": -9
 };
 
-var FADE_SPEED = 200;
+var FADE_SPEED = 160;
 //var FADE_DELAY = 220;
 
 function XY_TO_IDX(x, y) {
@@ -53,10 +61,6 @@ function MOVE_IDX(m) {
 
 function MOVE_STONE(m) {
     return parseInt((m >> 7) & 0x3);
-}
-
-function MOVE_SWAP(m) {
-    return MOVE(MOVE_STONE(m) ^ 3, MOVE_IDX(m));
 }
 
 function MOVE_NAME(m) {

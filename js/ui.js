@@ -1,7 +1,7 @@
 "use strict";
 
 function UI(g) {
-    var _inAnimation = false;
+    this._inAnimation = false;
     var ui = this;
     this._game = g;
     $(".hex[id^='h']").mousedown(function () {
@@ -87,7 +87,7 @@ UI.prototype.update = function () {
             if (tmpNum > 0) {
                 if (tmpNumLast > 0) {
                     if (tmpNum > tmpNumLast) {
-                        num.html("1|2");
+                        num.html("&#189;");
                     } else {
                         ui._inAnimation = true;
                         stone.fadeOut(FADE_SPEED, function () {
@@ -98,6 +98,9 @@ UI.prototype.update = function () {
                             stone.fadeIn(FADE_SPEED, function () {
                                 ui._inAnimation = false;
                             });
+                            if (g._lastIdx === idx) {
+                                stone.prepend(dot);
+                            }
                         });
                         return;
                     }
@@ -123,13 +126,16 @@ UI.prototype.update = function () {
                         if (g._playOrder === 2 && stone.hasClass("white")) {
                             ui._inAnimation = true;
                             stone.fadeOut(FADE_SPEED, function () {
-                                num.html("1|2");
+                                num.html("&#189;");
                                 stone.removeClass("white black");
                                 stone.addClass("black");
                                 $(this).css("cursor", "default");
                                 stone.fadeIn(FADE_SPEED, function () {
                                     ui._inAnimation = false;
                                 });
+                                if (g._lastIdx === idx) {
+                                    stone.prepend(dot);
+                                }
                             });
                             return;
                         }
@@ -248,8 +254,5 @@ UI.prototype.on_cell_click = function (idx) {
     // 检测是否有一方获胜
     if (this._game.check_game_over() !== STONE.EMPTY) {
         this.update();
-        //setTimeout(function () {
-        //    alert("GAME OVER");
-        //}, FADE_DELAY);
     }
 };

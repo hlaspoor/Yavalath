@@ -17,7 +17,7 @@ MoveGen.prototype.check_dir = function (idx, dir) {
     var curIdx;
     curIdx = idx - dir;
     side = -1;
-    while (curIdx >= 0 && this._board._edge[curIdx] === 0) {
+    while (curIdx >= 0) {
         if (this._board._stones[curIdx] !== STONE.EMPTY) {
             if (side === -1) {
                 if (this._board._stones[curIdx] === STONE.WHITE) {
@@ -43,11 +43,14 @@ MoveGen.prototype.check_dir = function (idx, dir) {
         } else {
             break;
         }
+        if(this._board._edge[curIdx] === 3) {
+            break;
+        }
         curIdx -= dir;
     }
     curIdx = idx + dir;
     side = -1;
-    while (curIdx < HEX_NUM && this._board._edge[curIdx] === 0) {
+    while (curIdx < HEX_NUM) {
         if (this._board._stones[curIdx] !== STONE.EMPTY) {
             if (side === -1) {
                 if (this._board._stones[curIdx] === STONE.WHITE) {
@@ -71,6 +74,9 @@ MoveGen.prototype.check_dir = function (idx, dir) {
                 break;
             }
         } else {
+            break;
+        }
+        if(this._board._edge[curIdx] === 3) {
             break;
         }
         curIdx += dir;

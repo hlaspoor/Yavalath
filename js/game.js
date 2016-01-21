@@ -126,7 +126,7 @@ Game.prototype.check_dir = function (idx, dir) {
     var side = this._board._stones[idx];
     var curIdx;
     curIdx = idx + dir;
-    while (curIdx < HEX_NUM && this._board._edge[curIdx] === 0) {
+    while (curIdx < HEX_NUM) {
         if (this._board._stones[curIdx] !== STONE.EMPTY &&
             side === this._board._stones[curIdx]) {
             if (this._board._stones[curIdx] === STONE.WHITE) {
@@ -137,43 +137,78 @@ Game.prototype.check_dir = function (idx, dir) {
         } else {
             break;
         }
+        if(this._board._edge[curIdx] === 3) {
+            break;
+        }
         curIdx += dir;
     }
-    alert(wCount + ":" + bCount);
     if (wCount >= 2) {
-        return wCount === 2 ? STONE.BLACK : STONE.WHITE;
+        return wCount === 2 ? RESULT_STA.WHITE_THREE : RESULT_STA.WHITE_FOUR;
     }
     if (bCount >= 2) {
-        return bCount === 2 ? STONE.WHITE : STONE.BLACK;
+        return wCount === 2 ? RESULT_STA.BLACK_THREE : RESULT_STA.BLACK_FOUR;
     }
-    return STONE.EMPTY;
+    return RESULT_STA.NONE;
 };
 
 Game.prototype.check_game_over = function () {
     var s = RESULT.NONE;
     var count = 0;
+    var wThreeCount = 0;
+    var bThreeCount = 0;
     for(var idx = 0; idx < HEX_NUM; idx++) {
         if(this._board._stones[idx] !== STONE.EMPTY) {
             // 检测从左到右
             s = this.check_dir(idx, DIR.RIGHT);
-            if (s !== STONE.EMPTY) {
-                this._isGameOver = s;
-                return s;
+            if (s !== RESULT_STA.NONE) {
+                if(s === RESULT_STA.WHITE_FOUR || s === RESULT_STA.BLACK_FOUR) {
+                    this._isGameOver = s;
+                    return s;
+                } else {
+                    if(s == RESULT_STA.WHITE_THREE) {
+                        wThreeCount++;
+                    }else{
+                        bThreeCount++;
+                    }
+                }
             }
             // 检测从右上到左下
             s = this.check_dir(idx, DIR.LEFT_DOWN);
-            if (s !== STONE.EMPTY) {
-                this._isGameOver = s;
-                return s;
+            if (s !== RESULT_STA.NONE) {
+                if(s === RESULT_STA.WHITE_FOUR || s === RESULT_STA.BLACK_FOUR) {
+                    this._isGameOver = s;
+                    return s;
+                } else {
+                    if(s == RESULT_STA.WHITE_THREE) {
+                        wThreeCount++;
+                    }else{
+                        bThreeCount++;
+                    }
+                }
             }
             // 检测从左上到右下
             s = this.check_dir(idx, DIR.RIGHT_DOWN);
-            if (s !== STONE.EMPTY) {
-                this._isGameOver = s;
-                return s;
+            if (s !== RESULT_STA.NONE) {
+                if(s === RESULT_STA.WHITE_FOUR || s === RESULT_STA.BLACK_FOUR) {
+                    this._isGameOver = s;
+                    return s;
+                } else {
+                    if(s == RESULT_STA.WHITE_THREE) {
+                        wThreeCount++;
+                    }else{
+                        bThreeCount++;
+                    }
+                }
             }
             count++;
         }
+    }
+    if(wThreeCount > 0) {
+        this._isGameOver = STONE.BLACK;
+        return STONE.BLACK;
+    } else if(bThreeCount > 0) {
+        this._isGameOver = STONE.BLACK;
+        return STONE.BLACK;
     }
     if(count === 61) {
         this._isGameOver = RESULT.DRAW;
