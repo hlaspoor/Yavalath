@@ -125,20 +125,6 @@ Game.prototype.check_dir = function (idx, dir) {
     var bCount = 0;
     var side = this._board._stones[idx];
     var curIdx;
-    curIdx = idx - dir;
-    while (curIdx >= 0 && this._board._edge[curIdx] === 0) {
-        if (this._board._stones[curIdx] !== STONE.EMPTY &&
-            side === this._board._stones[curIdx]) {
-            if (this._board._stones[curIdx] === STONE.WHITE) {
-                wCount++;
-            } else {
-                bCount++;
-            }
-        } else {
-            break;
-        }
-        curIdx -= dir;
-    }
     curIdx = idx + dir;
     while (curIdx < HEX_NUM && this._board._edge[curIdx] === 0) {
         if (this._board._stones[curIdx] !== STONE.EMPTY &&
@@ -153,6 +139,7 @@ Game.prototype.check_dir = function (idx, dir) {
         }
         curIdx += dir;
     }
+    alert(wCount + ":" + bCount);
     if (wCount >= 2) {
         return wCount === 2 ? STONE.BLACK : STONE.WHITE;
     }
