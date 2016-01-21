@@ -66,6 +66,14 @@ function UI(g) {
     $("#btn_load_fen").click(function () {
         g.load_fen($('#txt_fen').val());
     });
+
+    $("#btn_load_game").change(function () {
+        var reader = new FileReader();
+        reader.onload = function() {
+            alert(reader.result);
+        };
+        reader.readAsText(this.files[0], "UTF-8");
+    });
 }
 
 // 更新棋盘

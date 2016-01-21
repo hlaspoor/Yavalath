@@ -294,5 +294,7 @@ Game.prototype.swap = function () {
 };
 
 Game.prototype.test = function () {
-    this._ai.test(this._board, this._curSide);
+    //this._ai.test(this._board, this._curSide);
+    var blob = new Blob(["s\r\nss\r\nss"], {type: "text/plain;charset=utf-8"});
+    saveAs(blob, "test.pgn");
 };

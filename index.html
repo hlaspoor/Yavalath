@@ -533,7 +533,7 @@
             <div>
                 <h2>FEN</h2>
                 <div>
-                    <div id="fen" style="white-space:nowrap; font-family: Arial;"></div>
+                    <div id="fen" style="white-space:nowrap; font-family: Arial,serif;"></div>
                 </div>
                 <input type="text" id="txt_fen" style="width: 280px;" value="5/6/2w4/2b2b2/3bwwbw1/3wb3/3b3/2w3/5 w"
                        title="">
@@ -561,6 +561,7 @@
                 <button type="button" class="btn" id="btn_test">
                     Test
                 </button>
+                <input type='file' id="btn_load_game">
             </div>
             <h2>OPTION</h2>
             <div>
@@ -585,6 +586,7 @@
 </div>
 <script src="js/jquery-1.12.0.min.js"></script>
 <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="js/FileSaver.min.js"></script>
 <script src="js/def.js"></script>
 <script src="js/ui.js"></script>
 <script src="js/board.js"></script>
