@@ -79,6 +79,9 @@ function UI(g) {
     });
 
     $("#btn_load_game").change(function () {
+        if(!this.files[0].name.toLowerCase().endsWith(".ygn")) {
+            return;
+        }
         var reader = new FileReader();
         reader.onload = function () {
             $("#btn_load_game").val("");
@@ -111,12 +114,12 @@ UI.prototype.update = function () {
                         num.html("&#189;");
                     } else {
                         ui._inAnimation = true;
-                        stone.fadeOut(FADE_SPEED, function () {
+                        stone.fadeOut(FADE_SPEED / 4, function () {
                             num.html(tmpNum);
                             stone.removeClass("white black");
                             stone.addClass("white");
                             $(this).css("cursor", "default");
-                            stone.fadeIn(FADE_SPEED, function () {
+                            stone.fadeIn(FADE_SPEED * 3 / 4, function () {
                                 ui._inAnimation = false;
                             });
                             if (g._lastIdx === idx) {
@@ -141,18 +144,17 @@ UI.prototype.update = function () {
         } else if (g._board._stones[idx] === STONE.BLACK) {
             tmpNum = g._moveHistory.indexOf(MOVE(STONE.BLACK, idx)) + 1;
             tmpNumLast = g._moveHistory.indexOf(MOVE(STONE.WHITE, idx)) + 1;
-            console.log(tmpNum);
             if (tmpNum > 0) {
                 if (tmpNumLast > 0) {
                     if (tmpNum > tmpNumLast) {
                         if (g._playOrder === 2 && stone.hasClass("white")) {
                             ui._inAnimation = true;
-                            stone.fadeOut(FADE_SPEED, function () {
+                            stone.fadeOut(FADE_SPEED / 4, function () {
                                 num.html("&#189;");
                                 stone.removeClass("white black");
                                 stone.addClass("black");
                                 $(this).css("cursor", "default");
-                                stone.fadeIn(FADE_SPEED, function () {
+                                stone.fadeIn(FADE_SPEED * 3 / 4, function () {
                                     ui._inAnimation = false;
                                 });
                                 if (g._lastIdx === idx) {
