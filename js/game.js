@@ -172,7 +172,7 @@ Game.prototype.check_dir = function (idx, dir) {
         } else {
             break;
         }
-        if (this._board._edge[curIdx] === 3) {
+        if (this._board._mask[curIdx] === 0) {
             break;
         }
         curIdx += dir;
@@ -329,7 +329,8 @@ Game.prototype.swap = function () {
 };
 
 Game.prototype.test = function () {
-    //this._ai.test(this._board, this._curSide);
-    //var blob = new Blob(["s\r\nss\r\nss"], {type: "text/plain;charset=utf-8"});
-    //saveAs(blob, "test.pgn");
+    if(this._isGameOver) {
+        return;
+    }
+    this._ai.test(this._board, this._curSide);
 };

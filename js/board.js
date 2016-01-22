@@ -23,17 +23,6 @@ function Board() {
         0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0
     ];
-    this._edge = [
-        3, 3, 3, 3, 3, 0, 0, 0, 0,
-        3, 0, 0, 0, 0, 3, 0, 0, 0,
-        3, 0, 0, 0, 0, 0, 3, 0, 0,
-        3, 0, 0, 0, 0, 0, 0, 3, 0,
-        3, 0, 0, 0, 0, 0, 0, 0, 3,
-        0, 3, 0, 0, 0, 0, 0, 0, 3,
-        0, 0, 3, 0, 0, 0, 0, 0, 3,
-        0, 0, 0, 3, 0, 0, 0, 0, 3,
-        0, 0, 0, 0, 3, 3, 3, 3, 3
-    ];
 }
 
 Board.prototype.reset = function () {
@@ -62,7 +51,7 @@ Board.prototype.unmake_move = function (m) {
 
 Board.prototype.unmake_swap_move = function (m) {
     this._stones[MOVE_IDX(m)] = MOVE_STONE(m) ^ 3;
-}
+};
 
 Board.prototype.swap = function () {
     for (var idx = 0; idx < HEX_NUM; idx++) {

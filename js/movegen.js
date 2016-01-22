@@ -1,5 +1,7 @@
-function MoveGen(b) {
-    this._board = b;
+"use strict";
+
+function MoveGen(ai) {
+    this._board = ai;
 }
 
 // 检测指定位置的指定方向上相邻同色棋子总数是否大于等于3
@@ -43,7 +45,7 @@ MoveGen.prototype.check_dir = function (idx, dir) {
         } else {
             break;
         }
-        if(this._board._edge[curIdx] === 3) {
+        if(this._board._mask[curIdx] === 0) {
             break;
         }
         curIdx -= dir;
@@ -76,7 +78,7 @@ MoveGen.prototype.check_dir = function (idx, dir) {
         } else {
             break;
         }
-        if(this._board._edge[curIdx] === 3) {
+        if(this._board._mask[curIdx] === 0) {
             break;
         }
         curIdx += dir;

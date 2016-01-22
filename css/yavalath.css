@@ -4,7 +4,7 @@
 }
 
 body {
-    font-family: "Lucida Sans Unicode", Segoe, "Segoe WP", "Lucida Grande", "Lucida Sans", Verdana, sans-serif;
+    font-family: sans-serif;
     font-size: 13px;
     overflow: hidden;
 }
@@ -242,6 +242,7 @@ body {
 }
 
 #page_container {
+    font-family: "Lucida Sans Unicode", sans-serif;
     position: absolute;
     top: 0;
     left: 0;
@@ -292,7 +293,7 @@ body {
 }
 
 #game_result {
-    background-color: #dc143c;
+    background-color: #d01919;
     font-weight: bold;
     color: #ffffff;
     line-height: 36px;
@@ -322,6 +323,7 @@ body {
 }
 
 #right_container p {
+    font-size: 13px;
     line-height: 20px;
     margin: 3px 0;
     color: #333333;

@@ -24,17 +24,6 @@ function Ai() {
         0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0
     ];
-    this._edge = [
-        3, 3, 3, 3, 3, 0, 0, 0, 0,
-        3, 0, 0, 0, 0, 3, 0, 0, 0,
-        3, 0, 0, 0, 0, 0, 3, 0, 0,
-        3, 0, 0, 0, 0, 0, 0, 3, 0,
-        3, 0, 0, 0, 0, 0, 0, 0, 3,
-        0, 3, 0, 0, 0, 0, 0, 0, 3,
-        0, 0, 3, 0, 0, 0, 0, 0, 3,
-        0, 0, 0, 3, 0, 0, 0, 0, 3,
-        0, 0, 0, 0, 3, 3, 3, 3, 3
-    ];
     this._openning = [
         0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 1, 1, 1, 1, 0, 0, 0, 0,
@@ -58,6 +47,7 @@ function Ai() {
         0, 0, 0, 0, 0, 0, 0, 0, 0
     ];
     this._moveGen = new MoveGen(this);
+    this._eval = new Eval(this);
 }
 
 Ai.prototype.clone_board = function (b) {
@@ -96,7 +86,7 @@ Ai.prototype.test = function (b, s) {
     var m;
     var count = this.get_stones_count();
     if (count === 0) {
-        // get first move
+        // 生成第一步的走法
         var openArray = [];
         for (idx = 0; idx < HEX_NUM; idx++) {
             if (this._openning[idx] >= 1) {
@@ -108,11 +98,17 @@ Ai.prototype.test = function (b, s) {
         console.log(MOVE_NAME(m));
         return;
     } else if (count === 1) {
-        // check whether should swap move
+        // 第二步走法首先判断是否需要进行交换
         for (idx = 0; idx < HEX_NUM; idx++) {
-            if (this._stones[idx] !== STONE.EMPTY && this._swap[idx] === 1) {
-                console.log("Should Swap!");
-                return;
+            if (this._stones[idx] !== STONE.EMPTY) {
+                // 已经交换成黑棋了
+                if(this._stones[idx] === STONE.BLACK) {
+                    break;
+                }
+                if(this._swap[idx] === 1) {
+                    console.log("Swap:" + MOVE_NAME(MOVE(s, idx)));
+                    return;
+                }
             }
         }
     }
@@ -123,4 +119,7 @@ Ai.prototype.test = function (b, s) {
         output.push(MOVE_NAME(mvs[i]));
     }
     console.log(output);
+
+    var score = this._eval.eval_board();
+    console.log("score:" + score);
 };
