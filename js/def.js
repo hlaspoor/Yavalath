@@ -67,3 +67,24 @@ function MOVE_NAME(m) {
     var idx = MOVE_IDX(m);
     return COORD_X_CHAR[IDX_TO_X(idx)] + COORD_Y_CHAR[IDX_TO_Y(idx)];
 }
+
+function MOVE_FROM_NAME(s, n) {
+    var x = parseInt(n[0].charCodeAt(0) - 65);
+    var y = parseInt(n[1]) - 1;
+    var idx = XY_TO_IDX(x, y);
+    return MOVE(s, idx);
+}
+
+function RESULT_NAME(r) {
+    switch (r) {
+        case RESULT.NONE:
+            return "*";
+        case RESULT.WHITE:
+            return "1-0";
+        case RESULT.BLACK:
+            return "0-1";
+        case RESULT.DRAW:
+            return "1/2-1/2";
+    }
+    return "*";
+}

@@ -4,6 +4,7 @@ function Game() {
     this._ui = new UI(this);
     this._board = new Board();
     this._curSide = STONE.EMPTY;
+    this._startFen = "";
     this._lastIdx = -1;
     this._allowSwap = true;
     this._moveHistory = [];
@@ -16,6 +17,7 @@ function Game() {
 Game.prototype.reset = function () {
     this._board.reset();
     this._curSide = STONE.WHITE;
+    this._startFen = this.get_fen();
     this._lastIdx = -1;
     this._moveHistory = [];
     this._moveOrder = 0;
@@ -66,8 +68,7 @@ Game.prototype.load_fen = function (fen) {
             }
         }
     }
-    this.check_game_over();
-    this._ui.update();
+    this._startFen = fen;
 };
 
 Game.prototype.get_fen = function () {
@@ -116,6 +117,40 @@ Game.prototype.get_fen = function () {
     return fen;
 };
 
+Game.prototype.get_move_history = function () {
+    var mh = "[" + this._startFen + "]\r\n";
+    for (var i = 0; i < this._moveHistory.length; i++) {
+        if (i % 2 === 0) {
+            mh += (i / 2 + 1) + ". ";
+        }
+        mh += MOVE_NAME(this._moveHistory[i]) + " ";
+    }
+    return mh;
+};
+
+Game.prototype.load_move_history = function (ygn) {
+    var ygnArray = ygn.split("\r\n");
+    var fen = ygnArray[0].substr(1, ygnArray[0].length - 2);
+    var mvsArray = ygnArray[1].split(" ");
+    this.load_fen(fen);
+    var s = this._curSide;
+    for(var i = 0 ; i < mvsArray.length; i++) {
+        var n = mvsArray[i];
+        if(n.length === 2 && n.indexOf(".") < 0) {
+            var m = MOVE_FROM_NAME(s, n);
+            s ^= 3;
+            this.make_move(m);
+        }
+    }
+    this.check_game_over();
+    this._ui.update();
+};
+
+Game.prototype.tuncate = function () {
+    this._moveHistory.splice(this._playOrder, this._moveOrder - this._playOrder);
+    this._moveOrder = this._playOrder;
+};
+
 Game.prototype.chang_side = function () {
     this._curSide ^= 3;
 };
@@ -137,7 +172,7 @@ Game.prototype.check_dir = function (idx, dir) {
         } else {
             break;
         }
-        if(this._board._edge[curIdx] === 3) {
+        if (this._board._edge[curIdx] === 3) {
             break;
         }
         curIdx += dir;
@@ -156,18 +191,18 @@ Game.prototype.check_game_over = function () {
     var count = 0;
     var wThreeCount = 0;
     var bThreeCount = 0;
-    for(var idx = 0; idx < HEX_NUM; idx++) {
-        if(this._board._stones[idx] !== STONE.EMPTY) {
+    for (var idx = 0; idx < HEX_NUM; idx++) {
+        if (this._board._stones[idx] !== STONE.EMPTY) {
             // 检测从左到右
             s = this.check_dir(idx, DIR.RIGHT);
             if (s !== RESULT_STA.NONE) {
-                if(s === RESULT_STA.WHITE_FOUR || s === RESULT_STA.BLACK_FOUR) {
+                if (s === RESULT_STA.WHITE_FOUR || s === RESULT_STA.BLACK_FOUR) {
                     this._isGameOver = s;
                     return s;
                 } else {
-                    if(s == RESULT_STA.WHITE_THREE) {
+                    if (s == RESULT_STA.WHITE_THREE) {
                         wThreeCount++;
-                    }else{
+                    } else {
                         bThreeCount++;
                     }
                 }
@@ -175,13 +210,13 @@ Game.prototype.check_game_over = function () {
             // 检测从右上到左下
             s = this.check_dir(idx, DIR.LEFT_DOWN);
             if (s !== RESULT_STA.NONE) {
-                if(s === RESULT_STA.WHITE_FOUR || s === RESULT_STA.BLACK_FOUR) {
+                if (s === RESULT_STA.WHITE_FOUR || s === RESULT_STA.BLACK_FOUR) {
                     this._isGameOver = s;
                     return s;
                 } else {
-                    if(s == RESULT_STA.WHITE_THREE) {
+                    if (s == RESULT_STA.WHITE_THREE) {
                         wThreeCount++;
-                    }else{
+                    } else {
                         bThreeCount++;
                     }
                 }
@@ -189,13 +224,13 @@ Game.prototype.check_game_over = function () {
             // 检测从左上到右下
             s = this.check_dir(idx, DIR.RIGHT_DOWN);
             if (s !== RESULT_STA.NONE) {
-                if(s === RESULT_STA.WHITE_FOUR || s === RESULT_STA.BLACK_FOUR) {
+                if (s === RESULT_STA.WHITE_FOUR || s === RESULT_STA.BLACK_FOUR) {
                     this._isGameOver = s;
                     return s;
                 } else {
-                    if(s == RESULT_STA.WHITE_THREE) {
+                    if (s == RESULT_STA.WHITE_THREE) {
                         wThreeCount++;
-                    }else{
+                    } else {
                         bThreeCount++;
                     }
                 }
@@ -203,14 +238,14 @@ Game.prototype.check_game_over = function () {
             count++;
         }
     }
-    if(wThreeCount > 0) {
+    if (wThreeCount > 0) {
         this._isGameOver = STONE.BLACK;
         return STONE.BLACK;
-    } else if(bThreeCount > 0) {
+    } else if (bThreeCount > 0) {
         this._isGameOver = STONE.WHITE;
         return STONE.WHITE;
     }
-    if(count === 61) {
+    if (count === 61) {
         this._isGameOver = RESULT.DRAW;
         return RESULT.DRAW;
     }
@@ -253,9 +288,9 @@ Game.prototype.play_prev_move = function () {
         return;
     }
     var m = this._moveHistory[--this._playOrder];
-    if(this._playOrder === 1 && MOVE_IDX(m) === MOVE_IDX(this._moveHistory[this._playOrder - 1])) {
+    if (this._playOrder === 1 && MOVE_IDX(m) === MOVE_IDX(this._moveHistory[this._playOrder - 1])) {
         this._board.unmake_swap_move(m);
-    }else {
+    } else {
         this._board.unmake_move(m);
     }
     this._lastIdx = this._playOrder === 0 ? -1 : MOVE_IDX(this._moveHistory[this._playOrder - 1]);
@@ -295,6 +330,6 @@ Game.prototype.swap = function () {
 
 Game.prototype.test = function () {
     //this._ai.test(this._board, this._curSide);
-    var blob = new Blob(["s\r\nss\r\nss"], {type: "text/plain;charset=utf-8"});
-    saveAs(blob, "test.pgn");
+    //var blob = new Blob(["s\r\nss\r\nss"], {type: "text/plain;charset=utf-8"});
+    //saveAs(blob, "test.pgn");
 };

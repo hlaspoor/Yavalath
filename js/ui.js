@@ -53,8 +53,7 @@ function UI(g) {
     $("#btn_swap").click(function () {
         if (g._playOrder !== g._moveOrder) {
             // 移除该播放节点以后的所有走法后再加入新的走法
-            g._moveHistory.splice(g._playOrder, g._moveOrder - g._playOrder);
-            g._moveOrder = g._playOrder;
+            g.tuncate();
         }
         g.swap();
     });
@@ -65,12 +64,26 @@ function UI(g) {
 
     $("#btn_load_fen").click(function () {
         g.load_fen($('#txt_fen').val());
+        g.check_game_over();
+        g._ui.update();
+    });
+
+    $("#btn_save_move_history").click(function () {
+        var mh = g.get_move_history();
+        var blob = new Blob([mh], {type: "text/plain;charset=utf-8"});
+        saveAs(blob, "test.ygn");
+    });
+
+    $("#btn_load_move_history").click(function () {
+        $("#btn_load_game").click();
     });
 
     $("#btn_load_game").change(function () {
         var reader = new FileReader();
-        reader.onload = function() {
-            alert(reader.result);
+        reader.onload = function () {
+            $("#btn_load_game").val("");
+            var ygn = reader.result.toString();
+            g.load_move_history(ygn);
         };
         reader.readAsText(this.files[0], "UTF-8");
     });
@@ -252,8 +265,7 @@ UI.prototype.on_cell_click = function (idx) {
     }
     if (this._game._playOrder !== this._game._moveOrder) {
         // 移除该播放节点以后的所有走法后再加入新的走法
-        this._game._moveHistory.splice(this._game._playOrder, this._game._moveOrder - this._game._playOrder);
-        this._game._moveOrder = this._game._playOrder;
+        this._game.tuncate();
     }
     var m = MOVE(this._game._curSide, idx);
     this._game.make_move(m);
