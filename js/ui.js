@@ -141,6 +141,7 @@ UI.prototype.update = function () {
         } else if (g._board._stones[idx] === STONE.BLACK) {
             tmpNum = g._moveHistory.indexOf(MOVE(STONE.BLACK, idx)) + 1;
             tmpNumLast = g._moveHistory.indexOf(MOVE(STONE.WHITE, idx)) + 1;
+            console.log(tmpNum);
             if (tmpNum > 0) {
                 if (tmpNumLast > 0) {
                     if (tmpNum > tmpNumLast) {
@@ -159,6 +160,8 @@ UI.prototype.update = function () {
                                 }
                             });
                             return;
+                        } else {
+                            num.html("&#189;");
                         }
                     } else {
                         num.html(tmpNum);
@@ -269,9 +272,6 @@ UI.prototype.on_cell_click = function (idx) {
     }
     var m = MOVE(this._game._curSide, idx);
     this._game.make_move(m);
+    this._game.check_game_over();
     this.update();
-    // 检测是否有一方获胜
-    if (this._game.check_game_over() !== STONE.EMPTY) {
-        this.update();
-    }
 };
