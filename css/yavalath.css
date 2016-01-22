@@ -329,12 +329,12 @@ body {
 
 .left_part_container {
     float: left;
-    width: 250px;
+    width: 280px;
 }
 
 .right_part_container {
     float: left;
-    margin-left: 55px
+    margin-left: 45px
 }
 
 .clear_part_container {
