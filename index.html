@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Yavalath</title>
-    <link rel="stylesheet" href="css/yavalath.css">
     <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css">
+    <link rel="stylesheet" href="semantic/semantic.min.css">
+    <link rel="stylesheet" href="css/yavalath.css">
 </head>
 <body>
 <div id="page_container">
@@ -14,7 +15,7 @@
                 <div id="game_result">
                 </div>
             </div>
-            <div id="board_container">
+            <div id="board_container" class="no_select">
                 <div id="board_bg">
                     <div class="hex_row oft_4">
                         <div class="hex_bg"></div>
@@ -532,80 +533,84 @@
                 </p>
             </div>
             <div>
+                <h2>FEN</h2>
+                <div class="ui action input">
+                    <input type="text" id="txt_fen">
+                    <button type="button" class="ui left labeled icon button" id="btn_load_fen">
+                        <i class="share icon"></i>
+                        Apply
+                    </button>
+                </div>
+                <button type="button" class="ui button" id="btn_reset_fen">
+                    Clear
+                </button>
+            </div>
+            <div class="clear_part_container">
                 <div class="left_part_container">
-                    <h2>FEN</h2>
-                    <div>
-                        <input type="text" id="txt_fen" style="font-family: sans-serif; width: 145px; height: 28px;"
-                               value=""
-                               title="">
-                        <button type="button" class="btn" id="btn_load_fen">
-                            Set
+                    <h2>CONTROL</h2>
+                    <div class="ui icon buttons no_select">
+                        <button type="button" class="ui button" id="btn_first">
+                            <i class="step backward icon"></i>
                         </button>
-                        <button type="button" class="btn" id="btn_reset_fen">
-                            Clear
+                        <button type="button" class="ui button" id="btn_prev">
+                            <i class="backward icon"></i>
+                        </button>
+                        <button type="button" class="ui button" id="btn_next">
+                            <i class="forward icon"></i>
+                        </button>
+                        <button type="button" class="ui button" id="btn_last">
+                            <i class="step forward icon"></i>
                         </button>
                     </div>
+                    <button type="button" class="ui secondary button" id="btn_swap">
+                        Swap
+                    </button>
                 </div>
                 <div class="right_part_container">
                     <h2>MOVE HISTORY</h2>
-                    <div>
-                        <button type="button" class="btn" id="btn_load_move_history">
+                    <div class="ui buttons">
+                        <button type="button" class="ui button" id="btn_load_move_history">
                             Load
                         </button>
-                        <button type="button" class="btn" id="btn_save_move_history">
+                        <div class="or"></div>
+                        <button type="button" class="ui secondary button" id="btn_save_move_history">
                             Save
                         </button>
-                        <div style="display:none;">
-                            <input type='file' id="btn_load_game" accept=".ygn">
-                        </div>
                     </div>
-                </div>
-            </div>
-            <div class="clear_part_container">
-                <div  class="left_part_container">
-                    <h2>CONTROL</h2>
-                    <div>
-                        <button type="button" class="btn" id="btn_first">
-                            First
-                        </button>
-                        <button type="button" class="btn" id="btn_prev">
-                            Prev
-                        </button>
-                        <button type="button" class="btn" id="btn_next">
-                            Next
-                        </button>
-                        <button type="button" class="btn" id="btn_last">
-                            Last
-                        </button>
-                        <button type="button" class="btn" id="btn_swap">
-                            Swap
-                        </button>
-                    </div>
-                </div>
-                <div class="right_part_container">
-                    <div>
-                        <h2>ENGINE SETTING</h2>
-                        <div>
-                            <button type="button" class="btn" id="btn_test">
-                                Test
-                            </button>
-                        </div>
+                    <div style="display:none;">
+                        <input type='file' id="btn_load_game" accept=".ygn">
                     </div>
                 </div>
             </div>
             <div class="clear_part_container">
                 <h2>OPTION</h2>
-                <div>
-                    <input type="checkbox" id="chk_show_last_move" name="chk_show_last_move" checked="checked">
-                    <label for="chk_show_last_move">Show Last Move</label>
+                <div class="field">
+                    <div class="ui checkbox">
+                        <input type="checkbox" id="chk_show_last_move" name="chk_show_last_move" checked="checked">
+                        <label for="chk_show_last_move">Show Last Move</label>
+                    </div>
                 </div>
-                <div>
-                    <input type="checkbox" id="chk_show_move_order" name="chk_show_move_order" checked="checked">
-                    <label for="chk_show_move_order">Show Move Order</label>
+                <div class="field">
+                    <div class="ui checkbox">
+                        <input type="checkbox" id="chk_show_move_order" name="chk_show_move_order" checked="checked">
+                        <label for="chk_show_move_order">Show Move Order</label>
+                    </div>
                 </div>
+                <div class="field">
+                    <div class="ui checkbox">
+                        <input type="checkbox" id="chk_allow_swap" name="chk_allow_swap" checked="checked">
+                        <label for="chk_allow_swap">Allow Swap</label>
+                    </div>
+                </div>
+            </div>
+            <div style="display: none;">
                 <div>
-                    <input type="checkbox" id="chk_allow_swap" name="chk_allow_swap" checked="checked">
-                    <label for="chk_allow_swap">Allow Swap</label>
+                    <h2>ENGINE SETTING</h2>
+                    <div>
+                        <button type="button" class="ui button" id="btn_test">
+                            Test
+                        </button>
+                    </div>
                 </div>
             </div>
             <div style="margin-top: 30px;">
@@ -617,6 +622,7 @@
     </div>
 </div>
 <script src="js/jquery-1.12.0.min.js"></script>
+<script src="semantic/semantic.min.js"></script>
 <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
 <script src="js/FileSaver.min.js"></script>
 <script src="js/def.js"></script>

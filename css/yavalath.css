@@ -19,6 +19,9 @@ body {
     height: 480px;
     margin: 32px auto 0 auto;
     position: relative;
+}
+
+.no_select {
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     -khtml-user-select: none;
@@ -283,7 +286,7 @@ body {
 }
 
 #game_result_container {
-    height: 29px;
+    height: 36px;
     width: 543px;
     margin: 0 auto;
 }
@@ -292,7 +295,7 @@ body {
     background-color: #dc143c;
     font-weight: bold;
     color: #ffffff;
-    line-height: 29px;
+    line-height: 36px;
     height: 100%;
     width: 260px;
     margin: 0 auto;
@@ -337,4 +340,8 @@ body {
 .clear_part_container {
     clear: both;
     padding-top: 4px;
+}
+
+.ui.checkbox label {
+    cursor: pointer;
 }
