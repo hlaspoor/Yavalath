@@ -68,6 +68,11 @@ function UI(g) {
         g._ui.update();
     });
 
+    $("#btn_reset_fen").click(function () {
+        g.new_game();
+        g._ui.update();
+    });
+
     $("#btn_save_move_history").click(function () {
         var mh = g.get_move_history();
         var blob = new Blob([mh], {type: "text/plain;charset=utf-8"});
@@ -79,7 +84,7 @@ function UI(g) {
     });
 
     $("#btn_load_game").change(function () {
-        if(!this.files[0].name.toLowerCase().endsWith(".ygn")) {
+        if(this.files === undefined || this.files[0].name.toLowerCase().indexOf(".ygn") !== this.files[0].name.length - 4) {
             return;
         }
         var reader = new FileReader();
@@ -258,7 +263,7 @@ UI.prototype.update_swap = function () {
 };
 
 UI.prototype.show_fen = function () {
-    $("#fen").html(this._game.get_fen());
+    $("#txt_fen").val(this._game.get_fen());
 };
 
 UI.prototype.on_cell_click = function (idx) {
