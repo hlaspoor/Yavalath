@@ -533,39 +533,17 @@
                 </p>
             </div>
             <div>
-                <h2>FEN</h2>
-                <div class="ui action input">
-                    <input type="text" id="txt_fen">
-                    <button type="button" class="ui left labeled icon button" id="btn_load_fen">
-                        <i class="share icon"></i>
-                        Apply
-                    </button>
-                </div>
-                <button type="button" class="ui button" id="btn_reset_fen">
-                    Clear
-                </button>
-            </div>
-            <div class="clear_part_container">
                 <div class="left_part_container">
-                    <h2>CONTROL</h2>
-                    <div class="ui icon buttons no_select">
-                        <button type="button" class="ui button" id="btn_first">
-                            <i class="step backward icon"></i>
+                    <h2>FEN</h2>
+                    <div class="ui action input">
+                        <input type="text" id="txt_fen">
+                        <button type="button" class="ui icon button" id="btn_load_fen">
+                            <i class="share icon"></i>
                         </button>
-                        <button type="button" class="ui button" id="btn_prev">
-                            <i class="backward icon"></i>
-                        </button>
-                        <button type="button" class="ui button" id="btn_next">
-                            <i class="forward icon"></i>
-                        </button>
-                        <button type="button" class="ui button" id="btn_last">
-                            <i class="step forward icon"></i>
+                        <button type="button" class="ui red icon button" id="btn_reset_fen">
+                            <i class="trash icon"></i>
                         </button>
                     </div>
-                    <button type="button" class="ui secondary left labeled icon button" id="btn_swap">
-                        <i class="refresh icon"></i>
-                        Swap
-                    </button>
                 </div>
                 <div class="right_part_container">
                     <h2>MOVE HISTORY</h2>
@@ -574,12 +552,37 @@
                             Load
                         </button>
                         <div class="or"></div>
-                        <button type="button" class="ui secondary button" id="btn_save_move_history">
+                        <button type="button" class="ui button" id="btn_save_move_history">
                             Save
                         </button>
                     </div>
                     <div style="display:none;">
                         <input type='file' id="btn_load_game" accept=".ygn">
+                    </div>
+                </div>
+            </div>
+            <div class="clear_part_container">
+                <div class="left_part_container">
+                    <h2>CONTROL</h2>
+                    <div class="ui icon buttons no_select">
+                        <button type="button" class="ui black button" id="btn_first">
+                            <i class="step backward icon"></i>
+                        </button>
+                        <button type="button" class="ui black button" id="btn_prev">
+                            <i class="backward icon"></i>
+                        </button>
+                        <button type="button" class="ui black button" id="btn_next">
+                            <i class="forward icon"></i>
+                        </button>
+                        <button type="button" class="ui black button" id="btn_last">
+                            <i class="step forward icon"></i>
+                        </button>
+                    </div>
+                    <div class="ui icon buttons">
+                        <button type="button" class="ui black icon button" id="btn_swap">
+                            <i class="retweet icon"></i>
+                            Swap
+                        </button>
                     </div>
                 </div>
             </div>
