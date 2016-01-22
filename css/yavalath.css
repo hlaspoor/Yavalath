@@ -235,7 +235,7 @@ body {
 
 .btn {
     height: 28px;
-    width: 44px;
+    width: 46px;
 }
 
 #page_container {
@@ -322,4 +322,19 @@ body {
     line-height: 20px;
     margin: 3px 0;
     color: #333333;
+}
+
+.left_part_container {
+    float: left;
+    width: 250px;
+}
+
+.right_part_container {
+    float: left;
+    margin-left: 55px
+}
+
+.clear_part_container {
+    clear: both;
+    padding-top: 4px;
 }

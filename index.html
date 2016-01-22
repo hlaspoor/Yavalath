@@ -532,62 +532,81 @@
                 </p>
             </div>
             <div>
-                <h2>FEN</h2>
-                <input type="text" id="txt_fen" style="font-family: sans-serif; width: 350px; height: 28px;" value=""
-                       title="">
-                <button type="button" class="btn" id="btn_load_fen">
-                    Load
-                </button>
-                <button type="button" class="btn" id="btn_reset_fen">
-                    Reset
-                </button>
-            </div>
-            <h2>CONTROL</h2>
-            <div>
-                <button type="button" class="btn" id="btn_first">
-                    First
-                </button>
-                <button type="button" class="btn" id="btn_prev">
-                    Prev
-                </button>
-                <button type="button" class="btn" id="btn_next">
-                    Next
-                </button>
-                <button type="button" class="btn" id="btn_last">
-                    Last
-                </button>
-                <button type="button" class="btn" id="btn_swap">
-                    Swap
-                </button>
-
-                <button type="button" class="btn" id="btn_test">
-                    Test
-                </button>
-            </div>
-            <h2>MOVE HISTORY</h2>
-            <div>
-                <button type="button" class="btn" id="btn_save_move_history">
-                    Save
-                </button>
-                <button type="button" class="btn" id="btn_load_move_history">
-                    Load
-                </button>
-                <div style="display:none;">
-                    <input type='file' id="btn_load_game" accept=".ygn">
+                <div class="left_part_container">
+                    <h2>FEN</h2>
+                    <div>
+                        <input type="text" id="txt_fen" style="font-family: sans-serif; width: 145px; height: 28px;"
+                               value=""
+                               title="">
+                        <button type="button" class="btn" id="btn_load_fen">
+                            Set
+                        </button>
+                        <button type="button" class="btn" id="btn_reset_fen">
+                            Clear
+                        </button>
+                    </div>
+                </div>
+                <div class="right_part_container">
+                    <h2>MOVE HISTORY</h2>
+                    <div>
+                        <button type="button" class="btn" id="btn_save_move_history">
+                            Save
+                        </button>
+                        <button type="button" class="btn" id="btn_load_move_history">
+                            Load
+                        </button>
+                        <div style="display:none;">
+                            <input type='file' id="btn_load_game" accept=".ygn">
+                        </div>
+                    </div>
                 </div>
             </div>
-            <h2>OPTION</h2>
-            <div>
-                <input type="checkbox" id="chk_show_last_move" name="chk_show_last_move" checked="checked">
-                <label for="chk_show_last_move">Show Last Move</label>
+            <div class="clear_part_container">
+                <div  class="left_part_container">
+                    <h2>CONTROL</h2>
+                    <div>
+                        <button type="button" class="btn" id="btn_first">
+                            First
+                        </button>
+                        <button type="button" class="btn" id="btn_prev">
+                            Prev
+                        </button>
+                        <button type="button" class="btn" id="btn_next">
+                            Next
+                        </button>
+                        <button type="button" class="btn" id="btn_last">
+                            Last
+                        </button>
+                        <button type="button" class="btn" id="btn_swap">
+                            Swap
+                        </button>
+                    </div>
+                </div>
+                <div class="right_part_container">
+                    <div>
+                        <h2>ENGINE SETTING</h2>
+                        <div>
+                            <button type="button" class="btn" id="btn_test">
+                                Test
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div>
-                <input type="checkbox" id="chk_show_move_order" name="chk_show_move_order" checked="checked">
-                <label for="chk_show_move_order">Show Move Order</label>
-            </div>
-            <div>
-                <input type="checkbox" id="chk_allow_swap" name="chk_allow_swap" checked="checked">
-                <label for="chk_allow_swap">Allow Swap</label>
+            <div class="clear_part_container">
+                <h2>OPTION</h2>
+                <div>
+                    <input type="checkbox" id="chk_show_last_move" name="chk_show_last_move" checked="checked">
+                    <label for="chk_show_last_move">Show Last Move</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="chk_show_move_order" name="chk_show_move_order" checked="checked">
+                    <label for="chk_show_move_order">Show Move Order</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="chk_allow_swap" name="chk_allow_swap" checked="checked">
+                    <label for="chk_allow_swap">Allow Swap</label>
+                </div>
             </div>
             <div style="margin-top: 30px;">
                 <p>
